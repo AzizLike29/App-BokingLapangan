@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Socialite;
 
 use App\Models\User;
+use Laravel\Socialite\Two\GoogleProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,12 +13,16 @@ class GoogleLoginController extends Controller
 {
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->stateless()->redirect();
+        /** @var GoogleProvider $google */
+        $google = Socialite::driver('google');
+
+        return $google->stateless()->redirect();
     }
 
     public function handleGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        /** @var GoogleProvider $google */
+        $googleUser = $google->stateless()->user();
         $user = User::where('email', $googleUser->getEmail())->first();
 
         if (! $user) {
