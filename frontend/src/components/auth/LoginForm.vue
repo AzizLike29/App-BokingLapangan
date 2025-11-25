@@ -12,7 +12,7 @@
       </button>
     </p>
 
-    <form class="mt-6 space-y-5" @submit.prevent="handleSubmit">
+    <form class="mt-6 space-y-5" @submit.prevent="handleSubmitLogin">
       <!-- Email -->
       <div class="space-y-1">
         <label for="email" class="block text-sm font-medium text-gray-700">
@@ -69,7 +69,7 @@
         <!-- Tombol submit -->
         <button
           type="submit"
-          class="w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+          class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
           Masuk
         </button>
@@ -77,7 +77,8 @@
         <!-- Tombol masuk dengan Google -->
         <button
           type="button"
-          class="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 shadow-sm hover:bg-gray-50"
+          class="cursor-pointer w-full inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 shadow-sm hover:bg-gray-50"
+          @click="loginWithGoogle"
         >
           <!-- Icon Google -->
           <svg
@@ -115,13 +116,15 @@
 import { ref } from "vue";
 import api from "../../api";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const router = useRouter();
 const email = ref("");
 const password = ref("");
 const remember = ref(false);
 
-const handleSubmit = async () => {
+const handleSubmitLogin = async () => {
   try {
     const res = await api.post("/login", {
       email: email.value,
@@ -130,9 +133,18 @@ const handleSubmit = async () => {
     });
 
     console.log("Login berhasil", res.data);
-    router.push("/");
+    toast.success("Login berhasil!");
+    router.push("/dashboard");
   } catch (e) {
     console.error("Login gagal", e);
+    const msg =
+      e?.response?.data?.message ||
+      "Login gagal. silahkan cek email dan password";
+    toast.error(msg);
   }
+};
+
+const loginWithGoogle = () => {
+  window.location.href = `${import.meta.env.VITE_API_URL}/google/redirect`;
 };
 </script>

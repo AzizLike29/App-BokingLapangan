@@ -12,14 +12,14 @@
       Login Sekarang
     </button>
 
-    <form class="mt-6 space-y-5" @submit.prevent="handleSubmit">
+    <form class="mt-6 space-y-5" @submit.prevent="handleSubmitRegister">
       <!-- Nama -->
       <div class="space-y-1">
-        <label for="name" class="block text-sm font-medium text-gray-700"
+        <label for="nama" class="block text-sm font-medium text-gray-700"
           >Nama Lengkap</label
         >
         <input
-          id="name"
+          id="nama"
           v-model="nama"
           type="text"
           required
@@ -64,10 +64,10 @@
       </div>
 
       <div class="space-y-3">
-        <!-- Tombol Daftar -->
+        <!-- Tombol Submit -->
         <button
           type="submit"
-          class="w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus-outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus-outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Daftar
         </button>
@@ -80,24 +80,31 @@
 import { ref } from "vue";
 import api from "../../api";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const router = useRouter();
 const nama = ref("");
 const email = ref("");
 const password = ref("");
 
-const handleSubmit = async () => {
+const handleSubmitRegister = async () => {
   try {
     const res = await api.post("/register", {
-      name: nama.value,
+      nama: nama.value,
       email: email.value,
       password: password.value,
     });
 
     console.log("Register berhasil", res.data);
+    toast.success("Registrasi berhasil!");
     router.push("/login");
   } catch (e) {
     console.error("Register gagal", e);
+    const msg =
+      e?.response?.data?.message ||
+      "Login gagal. silahkan cek email dan password";
+    toast.error(msg);
   }
 };
 </script>
