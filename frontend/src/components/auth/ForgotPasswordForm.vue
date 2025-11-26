@@ -1,32 +1,15 @@
 <template>
   <div class="w-full max-w-md mx-auto" v-fade-up>
-    <h2 class="text-2xl font-semibold text-gray-900">Daftar Akun</h2>
-    <p class="mt-1 text-sm text-gray-500">Sudah punya akun?</p>
+    <h2 class="text-2xl font-semibold text-gray-900">Lupa Password</h2>
     <button
       type="button"
       class="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
       @click="router.push('/login')"
     >
-      Login Sekarang
+      Kembali sebelumnya
     </button>
 
-    <form class="mt-6 space-y-5" @submit.prevent="handleSubmitRegister">
-      <!-- Nama -->
-      <div class="space-y-1">
-        <label for="nama" class="block text-sm font-medium text-gray-700"
-          >Nama Lengkap</label
-        >
-        <input
-          id="nama"
-          v-model="nama"
-          type="text"
-          required
-          autocomplete="nama"
-          placeholder="Masukkan nama anda"
-          class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        />
-      </div>
-
+    <form class="mt-6 space-y-5" @submit.prevent="handleSubmitForgotPassword">
       <!-- Email -->
       <div class="space-y-1">
         <label for="email" class="block text-sm font-medium text-gray-700">
@@ -38,34 +21,48 @@
           type="email"
           required
           autocomplete="email"
-          placeholder="johndoe@gmail.com"
-          class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="Masukkan email sebelumnya"
+          class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
         />
       </div>
-
-      <!-- Password -->
+      <!-- Buat password baru -->
       <div class="space-y-1">
-        <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm font-medium text-gray-700">
-            Password
-          </label>
-        </div>
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >Password Baru</label
+        >
         <input
           id="password"
           v-model="password"
           type="password"
           required
-          autocomplete="current-password"
-          placeholder="*************"
+          autocomplete="password"
+          placeholder="Masukkan password baru"
+          class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
+        />
+      </div>
+      <!-- Konfirmasi password baru -->
+      <div class="space-y-1">
+        <label
+          for="confirm-password"
+          class="block text-sm font-medium text-gray-700"
+          >Konfirmasi Password Baru</label
+        >
+        <input
+          id="confirm-password"
+          v-model="confirmPassword"
+          type="password"
+          required
+          autocomplete="password"
+          placeholder="Konfirmasi password baru"
           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
         />
       </div>
 
       <div class="space-y-3">
-        <!-- Tombol Submit -->
+        <!-- Tombol ubah password -->
         <button
           type="submit"
-          class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus-outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
           <!-- Tambah spinner loading -->
           <svg
@@ -90,7 +87,7 @@
           </svg>
 
           <span>
-            {{ isLoading ? "Memproses..." : "Daftar" }}
+            {{ isLoading ? "Memproses..." : "Ubah Password" }}
           </span>
         </button>
       </div>
@@ -108,30 +105,31 @@ const toast = useToast();
 const router = useRouter();
 const isLoading = ref(false);
 
-const nama = ref("");
 const email = ref("");
 const password = ref("");
+const confirmPassword = ref("");
 
-const handleSubmitRegister = async () => {
+const handleSubmitForgotPassword = async () => {
+  if (password.value !== confirmPassword.value) {
+    toast.error("Password dan konfirmasi password tidak sesuai.");
+    return;
+  }
+
   try {
     // Set loading state
     isLoading.value = true;
 
-    const res = await api.post("/register", {
-      nama: nama.value,
+    await api.post("/lupa-password", {
       email: email.value,
       password: password.value,
+      password_confirmation: confirmPassword.value,
     });
-
-    console.log("Register berhasil", res.data);
-    toast.success("Registrasi berhasil!");
+    toast.success(
+      "Password berhasil diubah. Silakan masuk dengan password baru!"
+    );
     router.push("/login");
-  } catch (e) {
-    console.error("Register gagal", e);
-    const msg =
-      e?.response?.data?.message ||
-      "Login gagal. silahkan cek email dan password";
-    toast.error(msg);
+  } catch (error) {
+    toast.error("Terjadi kesalahan saat mengubah password. Silakan coba lagi.");
   } finally {
     isLoading.value = false; // Reset loading state
   }

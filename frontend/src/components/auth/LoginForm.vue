@@ -38,6 +38,7 @@
           <button
             type="button"
             class="cursor-pointer text-xs font-medium text-emerald-600 hover:text-emerald-500"
+            @click="router.push('/lupa-password')"
           >
             Lupa Password?
           </button>
@@ -73,6 +74,14 @@
         >
           Masuk
         </button>
+
+        <div class="flex items-center gap-3">
+          <div class="h-px flex-1 bg-gray-200"></div>
+          <span class="text-[11px] uppercase tracking-wide text-gray-400">
+            Atau
+          </span>
+          <div class="h-px flex-1 bg-gray-200"></div>
+        </div>
 
         <!-- Tombol masuk dengan Google -->
         <button
@@ -125,6 +134,11 @@ const password = ref("");
 const remember = ref(false);
 
 const handleSubmitLogin = async () => {
+  if (!remember.value) {
+    toast.error("Silakan centang 'Ingat saya' terlebih dahulu.");
+    return; // hentikan proses, jangan kirim request ke backend
+  }
+
   try {
     const res = await api.post("/login", {
       email: email.value,
