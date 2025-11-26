@@ -22,7 +22,9 @@ class GoogleLoginController extends Controller
     public function handleGoogleCallback()
     {
         /** @var GoogleProvider $google */
+        $google = Socialite::driver('google');
         $googleUser = $google->stateless()->user();
+
         $user = User::where('email', $googleUser->getEmail())->first();
 
         if (! $user) {
