@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../pages/HomeView.vue';
 import LoginView from '../pages/LoginView.vue';
 import RegisterView from '../pages/RegisterView.vue';
 import ForgotPasswordView from '../pages/ForgotPasswordView.vue';
@@ -6,7 +7,12 @@ import ForgotPasswordView from '../pages/ForgotPasswordView.vue';
 const routes = [
     {
         path: '/',
-        redirect: '/login',
+        redirect: '/badmin-kuy',
+    },
+    {
+        path: '/badmin-kuy',
+        name: 'badminKuy',
+        component: HomeView,
     },
     {
         path: '/login',
