@@ -43,7 +43,8 @@
           <!-- Sign In: hanya muncul di DESKTOP -->
           <button
             type="button"
-            class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/20 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/20 cursor-pointer transition duration-300 ease-in-out focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            @click="router.push('/login')"
           >
             <UserIcon class="size-5" aria-hidden="true" />
             <span>Sign In</span>
@@ -202,6 +203,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import api from "../../api";
+
 import {
   Disclosure,
   DisclosureButton,
@@ -217,6 +221,8 @@ import {
   XMarkIcon,
   UserIcon,
 } from "@heroicons/vue/24/outline";
+
+const router = useRouter();
 
 const navigation = [
   { name: "Home", href: "#", current: true },
