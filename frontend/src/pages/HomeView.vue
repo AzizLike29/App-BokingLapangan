@@ -4,7 +4,9 @@
     <AppNavbar />
 
     <!-- CONTENT -->
-    <main class="flex-1"></main>
+    <main class="flex-1">
+      <Home />
+    </main>
 
     <!-- FOOTER -->
     <AppFooter />
@@ -14,4 +16,5 @@
 <script setup>
 import AppNavbar from "../components/layout/AppNavbar.vue";
 import AppFooter from "../components/layout/AppFooter.vue";
+import Home from "../components/navigation/Home.vue";
 </script>
