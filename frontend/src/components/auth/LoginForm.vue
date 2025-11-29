@@ -148,7 +148,7 @@ const handleSubmitLogin = async () => {
 
     console.log("Login berhasil", res.data);
     toast.success("Login berhasil!");
-    router.push("/dashboard");
+    router.push("/badmin-kuy");
   } catch (e) {
     console.error("Login gagal", e);
     const msg =

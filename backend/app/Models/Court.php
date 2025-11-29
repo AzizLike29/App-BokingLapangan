@@ -11,5 +11,12 @@ class Court extends Model
         'city',
         'district',
         'image_url',
+        'open_time',
+        'close_time',
+        'field_count',
+        'maps_url',
+        'contact_name',
+        'contact_whatsapp',
+        'rating',
     ];
 }

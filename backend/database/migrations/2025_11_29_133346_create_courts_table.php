@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('district')->nullable();
             $table->string('image_url')->nullable();
+            $table->time('open_time')->nullable();
+            $table->time('close_time')->nullable();
+            $table->unsignedTinyInteger('field_count')
+                ->default(0);
+            $table->string('maps_url')->nullable();
+            $table->string('contact_name')->nullable();
+            $table->string('contact_whatsapp')->nullable();
+            $table->unsignedTinyInteger('rating')
+                ->default(0);
             $table->timestamps();
         });
     }
