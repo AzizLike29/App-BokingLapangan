@@ -10,10 +10,7 @@
         <div class="flex flex-1 items-center sm:items-stretch">
           <!-- BRAND KIRI -->
           <div class="flex shrink-0 items-center gap-2">
-            <h1
-              class="text-2xl font-bold leading-none text-white"
-              style="font-family: 'Poppins', sans-serif"
-            >
+            <h1 class="text-2xl font-bold leading-none text-white font-poppins">
               BadminKuy
             </h1>
           </div>
