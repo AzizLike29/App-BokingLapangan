@@ -131,17 +131,20 @@
           <DisclosureButton
             v-for="item in navigation"
             :key="item.name"
-            as="a"
-            :href="item.href"
-            :class="[
-              item.current
-                ? 'bg-gray-950/50 text-white'
-                : 'text-gray-300 hover:bg-white/5 hover:text-white',
-              'block rounded-md px-3 py-2 text-base font-medium',
-            ]"
-            :aria-current="item.current ? 'page' : undefined"
+            as="div"
           >
-            {{ item.name }}
+            <RouterLink
+              :to="item.href"
+              :class="[
+                isActive(item)
+                  ? 'bg-gray-950/50 text-white'
+                  : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                'block rounded-md px-3 py-2 text-base font-medium',
+              ]"
+              :aria-current="isActive(item) ? 'page' : undefined"
+            >
+              {{ item.name }}
+            </RouterLink>
           </DisclosureButton>
         </div>
 
@@ -200,7 +203,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute, RouterLink } from "vue-router";
 import api from "../../api";
 
 import {
@@ -219,14 +222,18 @@ import {
   UserIcon,
 } from "@heroicons/vue/24/outline";
 
-const router = useRouter();
+const router = useRouter(); // Router.push
+const route = useRoute(); // Route yang aktif
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Experience", href: "#", current: false },
-  { name: "Contact Us", href: "#", current: false },
+  { name: "Home", href: "/badmin-kuy" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact Us", href: "/contact-us" },
 ];
 
 // State bahasa yang aktif
 const currentLanguage = ref("id");
+
+// Fungsi untuk navigation yang aktif
+const isActive = (item) => item.href === route.path;
 </script>
