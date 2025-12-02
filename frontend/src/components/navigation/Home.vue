@@ -207,7 +207,7 @@
                 class="bg-white rounded-t-[2.5rem] rounded-b-none overflow-hidden"
               >
                 <img
-                  src="https://images.pexels.com/photos/5739196/pexels-photo-5739196.jpeg"
+                  src="../../assets/img/badminton-unsplash.jpg"
                   alt="Badminton"
                   class="w-64 h-80 object-cover"
                 />
@@ -343,6 +343,143 @@
         </div>
       </div>
     </section>
+
+    <!-- Community & Achievements -->
+    <section class="py-12 px-4 bg-slate-950">
+      <!-- Title dan Subtitle -->
+      <div class="text-center">
+        <h1 class="text-3xl font-semibold text-white">
+          Community &amp; Achievements
+        </h1>
+        <p class="mt-3 text-slate-300 max-w-2xl mx-auto">
+          Building badminton excellence and fostering community spirit across
+          the UAE since 2025.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <!-- Cards 1 -->
+        <div
+          class="mx-auto w-full max-w-md rounded-3xl bg-slate-900/90 border border-slate-800 px-8 py-10 shadow-xl flex flex-col items-center text-center"
+        >
+          <div
+            class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-slate-800"
+          >
+            <TrophyIcon class="text-2xl"></TrophyIcon>
+          </div>
+          <!-- Badge -->
+          <span
+            class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
+            >Since 2019</span
+          >
+          <!-- Title -->
+          <h3 class="text-xl font-semibold text-white mb-2">
+            Trusted Brand Partners
+          </h3>
+          <!-- Description -->
+          <p class="text-sm leading-relaxed text-slate-300">
+            Official dealer of world-class brands Yonex, Victor, and Apacs
+          </p>
+        </div>
+        <!-- Cards 2 -->
+        <div
+          class="mx-auto w-full max-w-md rounded-3xl bg-slate-900/90 border border-slate-800 px-8 py-10 shadow-xl flex flex-col items-center text-center"
+        >
+          <div
+            class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-slate-800"
+          >
+            <MapPinIcon class="text-2xl"></MapPinIcon>
+          </div>
+          <!-- Badge -->
+          <span
+            class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
+            >3 Locations</span
+          >
+          <!-- Title -->
+          <h3 class="text-xl font-semibold text-white mb-2">
+            Premium Facilities
+          </h3>
+          <!-- Description -->
+          <p class="text-sm leading-relaxed text-slate-300">
+            Successfully managed top-tier sports complexes in Abu Dhabi &amp; Al
+            Ain.
+          </p>
+        </div>
+        <!-- Cards 3 -->
+        <div
+          class="mx-auto w-full max-w-md rounded-3xl bg-slate-900/90 border border-slate-800 px-8 py-10 shadow-xl flex flex-col items-center text-center"
+        >
+          <div
+            class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-slate-800"
+          >
+            <AcademicCapIcon class="text-2xl"></AcademicCapIcon>
+          </div>
+          <!-- Badge -->
+          <span
+            class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
+            >All Levels</span
+          >
+          <!-- Title -->
+          <h3 class="text-xl font-semibold text-white mb-2">
+            Athletic Development
+          </h3>
+          <!-- Description -->
+          <p class="text-sm leading-relaxed text-slate-300">
+            Nurturing athletic talent through structured training programs.
+          </p>
+        </div>
+        <!-- Cards 4 -->
+        <div
+          class="mx-auto w-full max-w-md rounded-3xl bg-slate-900/90 border border-slate-800 px-8 py-10 shadow-xl flex flex-col items-center text-center"
+        >
+          <div
+            class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-slate-800"
+          >
+            <GlobeAltIcon class="text-2xl"></GlobeAltIcon>
+          </div>
+          <!-- Badge -->
+          <span
+            class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
+            >UAE &amp; GCC</span
+          >
+          <!-- Title -->
+          <h3 class="text-xl font-semibold text-white mb-2">Regional Impact</h3>
+          <!-- Description -->
+          <p class="text-sm leading-relaxed text-slate-300">
+            Building a strong badminton culture across the UAE &amp; GCC region.
+          </p>
+        </div>
+      </div>
+
+      <!-- Our Mission -->
+      <div class="text-center py-12 px-4">
+        <h1 class="text-3xl font-semibold text-white">Our Mission</h1>
+        <p class="mt-3 text-slate-300 max-w-2xl mx-auto">
+          To promote active lifestyles and elevate sporting experiences through
+          premium equipment, world-class facilities, and expert coaching. We are
+          committed to nurturing talent and building a vibrant badminton
+          community that inspires excellence at every level.
+        </p>
+      </div>
+
+      <!-- Stats / Counters -->
+      <div ref="statsSection" class="py-10 px-4 border-t border-slate-800">
+        <div
+          class="max-w-5xl mx-auto grid grid-cols-2 gap-8 text-center md:grid-cols-4"
+        >
+          <div v-for="stat in stats" :key="stat.id" class="space-y-1">
+            <div class="text-3xl font-semibold text-white">
+              {{ stat.value }}
+              <span v-if="stat.suffix">{{ stat.suffix }}</span>
+            </div>
+            <p class="text-sm text-slate-300">
+              {{ stat.label }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -355,6 +492,10 @@ import { DevicePhoneMobileIcon } from "@heroicons/vue/24/outline";
 import { BuildingOfficeIcon } from "@heroicons/vue/24/outline";
 import { CreditCardIcon } from "@heroicons/vue/24/outline";
 import { ClockIcon } from "@heroicons/vue/24/outline";
+import { TrophyIcon } from "@heroicons/vue/24/outline";
+import { MapPinIcon } from "@heroicons/vue/24/outline";
+import { AcademicCapIcon } from "@heroicons/vue/24/outline";
+import { GlobeAltIcon } from "@heroicons/vue/24/outline";
 
 const courts = ref([]);
 const isLoading = ref(true);
@@ -387,6 +528,56 @@ onMounted(async () => {
     error.value = "Gagal memuat data lapangan";
   } finally {
     isLoading.value = false;
+  }
+});
+
+// Data Counter
+const stats = ref([
+  { id: 1, label: "Established", value: 0, target: 2019, suffix: "" },
+  { id: 2, label: "Happy Customers", value: 0, target: 1000, suffix: "+" },
+  { id: 3, label: "Academy Students", value: 0, target: 500, suffix: "+" },
+  { id: 4, label: "Court Availability", value: 0, target: 24, suffix: "/7" },
+]);
+
+// Animasi Counter
+const statsSection = ref(null);
+
+function animateCounters() {
+  const duration = 1500; //time
+  const start = performance.now();
+  const startValues = stats.value.map((s) => s.value);
+
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+
+    stats.value.forEach((stat, index) => {
+      const from = startValues[index];
+      const to = stat.target;
+      stat.value = Math.floor(from + (to - from) * progress);
+    });
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
+onMounted(() => {
+  // Animasi jalan ketika section masuk ke viewport
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        animateCounters();
+        observer.disconnect(); // Jangan diulang - ulang
+      }
+    },
+    { threshold: 0.3 }
+  );
+
+  if (statsSection.value) {
+    observer.observe(statsSection.value);
   }
 });
 </script>
