@@ -15,19 +15,6 @@ Aplikasi **Sewa / Booking Lapangan Badminton** dengan arsitektur **frontend–ba
   - [✨ Ringkasan Proyek](#-ringkasan-proyek)
   - [📦 Tech Stack](#-tech-stack)
   - [📁 Struktur Folder](#-struktur-folder)
-  - [⚙️ Persiapan Lingkungan](#️-persiapan-lingkungan)
-  - [🚀 Setup Backend (Laravel)](#-setup-backend-laravel)
-  - [💻 Setup Frontend (Vue \+ Vite \+ Tailwind)](#-setup-frontend-vue--vite--tailwind)
-  - [🌐 Konfigurasi URL API](#-konfigurasi-url-api)
-  - [🔐 Fitur Autentikasi](#-fitur-autentikasi)
-  - [📅 Fitur Booking Lapangan](#-fitur-booking-lapangan)
-  - [📡 Contoh Endpoint API](#-contoh-endpoint-api)
-  - [🧪 Cara Menjalankan di Lokal](#-cara-menjalankan-di-lokal)
-  - [📸 Screenshots (Opsional)](#-screenshots-opsional)
-  - [🛠️ Panduan Pengembangan](#️-panduan-pengembangan)
-  - [✅ Checklist Pengerjaan](#-checklist-pengerjaan)
-  - [📄 Lisensi](#-lisensi)
-  - [👤 Author](#-author)
 
 ---
 
