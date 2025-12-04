@@ -17,20 +17,20 @@
           <!-- MENU DESKTOP (TENGAH) -->
           <div class="hidden sm:flex flex-1 justify-center">
             <div class="flex space-x-4">
-              <a
+              <RouterLink
                 v-for="item in navigation"
                 :key="item.name"
-                :href="item.href"
+                :to="item.href"
                 :class="[
-                  item.current
+                  isActive(item)
                     ? 'bg-gray-950/50 text-white'
                     : 'text-gray-300 hover:bg-white/5 hover:text-white',
                   'rounded-md px-3 py-2 text-sm font-medium',
                 ]"
-                :aria-current="item.current ? 'page' : undefined"
+                :aria-current="isActive(item) ? 'page' : undefined"
               >
                 {{ item.name }}
-              </a>
+              </RouterLink>
             </div>
           </div>
         </div>
