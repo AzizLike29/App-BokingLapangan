@@ -16,10 +16,12 @@ class ContactMessages extends Model
         'message',
         'whatsapp_status',
         'whatsapp_sent_at',
+        'whatsapp_number',
     ];
 
     // Casting tipe data
     protected $casts = [
         'whatsapp_sent_at' => 'datetime',
+        'whatsapp_number' => ['nullable', 'string', 'max:30'],
     ];
 }

@@ -124,14 +124,19 @@ const handleSubmitRegister = async () => {
     });
 
     console.log("Register berhasil", res.data);
-    toast.success("Registrasi berhasil!");
+    if (res.data?.message) {
+      toast.success(res.data.message);
+    }
     router.push("/login");
   } catch (e) {
     console.error("Register gagal", e);
-    const msg =
-      e?.response?.data?.message ||
-      "Login gagal. silahkan cek email dan password";
-    toast.error(msg);
+    const errors = e?.response?.data?.errors;
+
+    if (errors) {
+      const firstField = Object.keys(errors)[0];
+      const firstMessage = errors[firstField][0];
+      toast.error(firstMessage);
+    }
   } finally {
     isLoading.value = false; // Reset loading state
   }

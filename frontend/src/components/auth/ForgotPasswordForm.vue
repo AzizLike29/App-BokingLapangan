@@ -119,17 +119,23 @@ const handleSubmitForgotPassword = async () => {
     // Set loading state
     isLoading.value = true;
 
-    await api.post("/lupa-password", {
+    const res = await api.post("/lupa-password", {
       email: email.value,
       password: password.value,
       password_confirmation: confirmPassword.value,
     });
-    toast.success(
-      "Password berhasil diubah. Silakan masuk dengan password baru!"
-    );
+    if (res.data?.message) {
+      toast.success(res.data.message);
+    }
     router.push("/login");
   } catch (error) {
-    toast.error("Terjadi kesalahan saat mengubah password. Silakan coba lagi.");
+    const errors = e?.response?.data?.errors;
+
+    if (errors) {
+      const firstField = Object.keys(errors)[0];
+      const firstMessage = errors[firstField][0];
+      toast.error(firstMessage);
+    }
   } finally {
     isLoading.value = false; // Reset loading state
   }

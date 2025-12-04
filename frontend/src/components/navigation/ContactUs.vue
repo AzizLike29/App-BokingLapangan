@@ -13,7 +13,7 @@
         <div class="p-8 bg-gray-50">
           <h2 class="text-xl font-semibold text-gray-500 mb-6">Contact Us</h2>
 
-          <form class="space-y-4">
+          <form class="space-y-4" @submit.prevent="handleSubmitContactUs">
             <!-- Full name & email -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -23,6 +23,8 @@
                 <input
                   type="text"
                   placeholder="name"
+                  required
+                  v-model="full_name"
                   class="mt-1 block w-full border border-gray-300 rounded-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
@@ -32,6 +34,8 @@
                 >
                 <input
                   type="email"
+                  v-model="email"
+                  required
                   placeholder="Email"
                   class="mt-1 block w-full border border-gray-300 rounded-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
@@ -45,7 +49,9 @@
               >
               <input
                 type="text"
+                required
                 placeholder="Subject"
+                v-model="subject"
                 class="mt-1 block w-full border border-gray-300 rounded-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               />
             </div>
@@ -57,7 +63,9 @@
               </label>
               <textarea
                 rows="4"
+                required
                 placeholder="Message"
+                v-model="message"
                 class="mt-1 block w-full border border-gray-300 rounded-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
               ></textarea>
             </div>
@@ -65,9 +73,35 @@
             <!-- Tombol -->
             <button
               type="submit"
-              class="mt-2 inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-emerald-600 rounded-sm shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="cursor-pointer mt-2 inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-emerald-600 rounded-sm shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Send Message
+              <!-- Tambah spinner loading -->
+              <svg
+                v-if="isLoading"
+                class="animate-spin h-4 w-4 mr-2"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                  fill="none"
+                />
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+              </svg>
+
+              <PaperAirplaneIcon v-else class="h-4 w-4 mr-2" />
+
+              <span>
+                {{ isLoading ? "Memproses..." : "Kirim Pesan" }}
+              </span>
             </button>
           </form>
         </div>
@@ -147,8 +181,51 @@
 </template>
 
 <script setup>
+import api from "../../api";
+import { ref } from "vue";
+import { useToast } from "vue-toastification";
 import { MapPinIcon } from "@heroicons/vue/24/outline";
 import { PhoneIcon } from "@heroicons/vue/24/outline";
 import { RocketLaunchIcon } from "@heroicons/vue/24/outline";
 import { GlobeAltIcon } from "@heroicons/vue/24/outline";
+import { PaperAirplaneIcon } from "@heroicons/vue/24/outline";
+
+const toast = useToast();
+const isLoading = ref(false);
+const full_name = ref("");
+const email = ref("");
+const subject = ref("");
+const message = ref("");
+
+const handleSubmitContactUs = async () => {
+  const payload = {
+    full_name: full_name.value,
+    email: email.value,
+    subject: subject.value,
+    message: message.value,
+  };
+  try {
+    // Set loading state
+    isLoading.value = true;
+
+    const { data } = await api.post("/contact-us", payload);
+    toast.success(data.message);
+
+    // Berhasil kosongkan 'form'
+    full_name.value = "";
+    email.value = "";
+    subject.value = "";
+    message.value = "";
+  } catch (e) {
+    const errors = e?.response?.data?.errors;
+
+    if (errors) {
+      const firstField = Object.keys(errors)[0];
+      const firstMessage = errors[firstField][0];
+      toast.error(firstMessage);
+    }
+  } finally {
+    isLoading.value = false; // Reset loading state
+  }
+};
 </script>

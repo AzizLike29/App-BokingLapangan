@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contact_messages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
             // Data Fields
+            $table->id();
             $table->string('full_name');
             $table->string('email');
             $table->string('subject');
@@ -22,6 +21,7 @@ return new class extends Migration
 
             // Job Records time send at
             $table->string('whatsapp_status')->default('pending');
+            $table->string('whatsapp_number')->nullable();
             $table->timestamp('whatsapp_sent_at')->nullable();
             $table->timestamps();
         });

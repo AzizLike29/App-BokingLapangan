@@ -39,4 +39,9 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
+    'whatsapp' => [
+        'endpoint'      => env('WHATSAPP_ENDPOINT'),
+        'token'         => env('WHATSAPP_TOKEN'),
+        'admin_number'  => env('WHATSAPP_ADMIN_NUMBER'),
+    ],
 ];

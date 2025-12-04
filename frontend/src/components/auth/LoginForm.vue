@@ -147,14 +147,19 @@ const handleSubmitLogin = async () => {
     });
 
     console.log("Login berhasil", res.data);
-    toast.success("Login berhasil!");
+    if (res.data?.message) {
+      toast.success(res.data.message);
+    }
     router.push("/badmin-kuy");
   } catch (e) {
     console.error("Login gagal", e);
-    const msg =
-      e?.response?.data?.message ||
-      "Login gagal. silahkan cek email dan password";
-    toast.error(msg);
+    const errors = e?.response?.data?.errors;
+
+    if (errors) {
+      const firstField = Object.keys(errors)[0];
+      const firstMessage = errors[firstField][0];
+      toast.error(firstMessage);
+    }
   }
 };
 
