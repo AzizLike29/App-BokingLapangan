@@ -9,7 +9,7 @@ import ForgotPasswordView from '../pages/ForgotPasswordView.vue';
 const routes = [
     {
         path: '/',
-        redirect: '/badmin-kuy',
+        redirect: '/login',
     },
     {
         path: '/login',
