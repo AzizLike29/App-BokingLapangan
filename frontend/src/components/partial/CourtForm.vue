@@ -21,9 +21,11 @@
         class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
       >
         <!-- Header -->
-        <div class="bg-linear-to-r from-blue-600 to-blue-700 p-6 rounded-t-2xl">
+        <div
+          class="bg-linear-to-r from-emerald-600 to-emerald-700 p-6 rounded-t-2xl"
+        >
           <h2 class="text-2xl font-bold text-white">Form Lapangan Badminton</h2>
-          <p class="text-blue-100 text-sm mt-1">
+          <p class="text-emerald-100 text-sm mt-1">
             Lengkapi informasi lapangan badminton Anda
           </p>
         </div>
@@ -36,15 +38,38 @@
               </label>
               <div class="relative">
                 <div
-                  class="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-500 transition-colors cursor-pointer"
+                  class="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-emerald-500 transition-colors cursor-pointer"
                 >
                   <div
                     class="aspect-square bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden"
                   >
                     <img
-                      alt="lapangan-sepakbola"
+                      v-if="imagePreview"
+                      :src="imagePreview"
+                      alt="preview-gambar"
                       class="w-full h-full object-cover"
                     />
+
+                    <!-- Jika belum ada gambar tampilkan icon upload -->
+                    <div
+                      v-else
+                      class="flex flex-col items-center justify-center text-gray-400"
+                    >
+                      <svg
+                        class="w-12 h-12 mb-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4 16l4-4a3 5 0 014 0l4 4m0 0l4-4a3 5 0 014 0l4 4M4 16v4a2 2 0 002 2h12a2 2 0 002-2v-4"
+                        />
+                      </svg>
+                      <span class="text-sm">Upload Foto</span>
+                    </div>
                   </div>
                   <input
                     type="file"
@@ -76,7 +101,7 @@
                   type="text"
                   required
                   placeholder="Contoh: GOR Badminton Semarang"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                 />
               </div>
 
@@ -91,7 +116,7 @@
                     type="text"
                     required
                     placeholder="Contoh: Semarang"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
                 <div>
@@ -103,7 +128,7 @@
                     type="text"
                     required
                     placeholder="Contoh: Tembalang"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
               </div>
@@ -118,7 +143,7 @@
                     v-model="form.open_time"
                     type="time"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
                 <div>
@@ -129,7 +154,7 @@
                     v-model="form.close_time"
                     type="time"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
               </div>
@@ -146,7 +171,7 @@
                     min="1"
                     required
                     placeholder="Contoh: 8"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
                 <div>
@@ -160,7 +185,7 @@
                     min="0"
                     max="5"
                     placeholder="0.0 - 5.0"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
               </div>
@@ -174,7 +199,7 @@
                   v-model="form.maps_url"
                   type="url"
                   placeholder="google Maps Tersedia"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                 />
               </div>
 
@@ -204,7 +229,7 @@
                     v-model="form.contact_name"
                     type="text"
                     placeholder="Masukkan nama kontak"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition bg-white"
                   />
                 </div>
                 <div>
@@ -215,7 +240,7 @@
                     v-model="form.contact_whatsapp"
                     type="tel"
                     placeholder="Masukkan nomer telepon"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition bg-white"
                   />
                 </div>
               </div>
@@ -234,7 +259,7 @@
             </button>
             <button
               type="submit"
-              class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium shadow-lg shadow-blue-500/30 flex items-center gap-2"
+              class="px-6 py-2.5 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition font-medium shadow-lg shadow-emerald-500/30 flex items-center gap-2"
             >
               <svg
                 class="w-5 h-5"
@@ -259,24 +284,64 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { PlusCircleIcon } from "@heroicons/vue/24/outline";
+import { useToast } from "vue-toastification";
+import api from "../../api";
+
+const toast = useToast();
+
+// Modal State
 const isOpen = ref(false);
+
+// Inisialisasi form data
+const form = reactive({
+  name: "",
+  city: "",
+  district: "",
+  image_url: "",
+  open_time: "",
+  close_time: "",
+  field_count: "",
+  maps_url: "",
+  contact_name: "",
+  contact_whatsapp: "",
+  rating: "",
+});
+
+// Image Handling
+const imagePreview = ref(null);
+const fileInput = ref(null);
+
+const handleImageUpload = (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  imagePreview.value = URL.createObjectURL(file);
+};
+
+// Clear selected image
+const clearImage = () => {
+  imagePreview.value = null;
+  if (fileInput.value) {
+    fileInput.value.value = "";
+  }
+};
 
 const handleSubmitCourtForm = async () => {
   try {
     const res = await api.post("/court-form", {
-      name: name.value,
-      city: city.value,
-      district: district.value,
-      image_url: image_url.value,
-      open_time: open_time.value,
-      close_time: close_time.value,
-      field_count: field_count.value,
-      maps_url: maps_url.value,
-      contact_name: contact_name.value,
-      contact_whatsapp: contact_whatsapp.value,
-      rating: rating.value,
+      name: form.name,
+      city: form.city,
+      district: form.district,
+      image_url: form.image_url,
+      open_time: form.open_time,
+      close_time: form.close_time,
+      field_count: form.field_count,
+      maps_url: form.maps_url,
+      contact_name: form.contact_name,
+      contact_whatsapp: form.contact_whatsapp,
+      rating: form.rating,
     });
 
     // Response sukses

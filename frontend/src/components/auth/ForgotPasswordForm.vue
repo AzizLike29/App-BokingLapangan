@@ -129,7 +129,7 @@ const handleSubmitForgotPassword = async () => {
     }
     router.push("/login");
   } catch (error) {
-    const errors = e?.response?.data?.errors;
+    const errors = error?.response?.data?.errors;
 
     if (errors) {
       const firstField = Object.keys(errors)[0];

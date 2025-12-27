@@ -24,7 +24,7 @@ class ExperienceController extends Controller
             'close_time'       => $data['close_time'],
             'field_count'      => $data['field_count'],
             'maps_url'         => $data['maps_url'],
-            'contact_name'     => $data['maps_url'],
+            'contact_name'     => $data['contact_name'],
             'contact_whatsapp' => $data['contact_whatsapp'],
             'rating'           => $data['rating']
         ]);
