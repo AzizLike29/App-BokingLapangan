@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Navigation;
 use App\Models\Court;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Navigation\ExperienceRequest;
 
 class ExperienceController extends Controller
@@ -14,12 +15,20 @@ class ExperienceController extends Controller
         // Data yang sudah tervalidasi di request
         $data = $request->validated();
 
+        // dd($request->all());
+
+        // Simpan file gambar
+        $path = $request->file('image')->store('courts', 'public');
+
+        // Url gambar full
+        $imageUrl = Storage::url($path);
+
         // Simpan data ke database
         $court = Court::create([
             'name'             => $data['name'],
             'city'             => $data['city'],
             'district'         => $data['district'],
-            'image_url'        => $data['image_url'],
+            'image_url'        => $imageUrl,
             'open_time'        => $data['open_time'],
             'close_time'       => $data['close_time'],
             'field_count'      => $data['field_count'],

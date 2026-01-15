@@ -81,9 +81,9 @@
                 </div>
                 <button
                   v-if="imagePreview"
-                  @click="clearImage"
+                  @click.prevent="clearImage"
                   type="button"
-                  class="mt-2 w-full px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition"
+                  class="relative z-10 mt-2 w-full px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition"
                 >
                   Hapus Foto
                 </button>
@@ -299,63 +299,97 @@ const form = reactive({
   name: "",
   city: "",
   district: "",
-  image_url: "",
   open_time: "",
   close_time: "",
-  field_count: "",
+  field_count: null,
   maps_url: "",
   contact_name: "",
   contact_whatsapp: "",
-  rating: "",
+  rating: null,
 });
 
 // Image Handling
 const imagePreview = ref(null);
 const fileInput = ref(null);
+const selectedFile = ref(null);
 
 const handleImageUpload = (event) => {
   const file = event.target.files[0];
   if (!file) return;
 
+  selectedFile.value = file;
   imagePreview.value = URL.createObjectURL(file);
 };
 
-// Clear selected image
+// Aksi tombol hapus gambar
 const clearImage = () => {
+  if (imagePreview.value) {
+    URL.revokeObjectURL(imagePreview.value);
+  }
   imagePreview.value = null;
+  selectedFile.value = null;
+
   if (fileInput.value) {
+    // reset input file
     fileInput.value.value = "";
   }
 };
 
+// Form reset setelah submit
+const resetForm = () => {
+  form.name = "";
+  form.city = "";
+  form.district = "";
+  form.open_time = "";
+  form.close_time = "";
+  form.field_count = null;
+  form.maps_url = "";
+  form.contact_name = "";
+  form.contact_whatsapp = "";
+  form.rating = null;
+  clearImage();
+};
+
 const handleSubmitCourtForm = async () => {
   try {
-    const res = await api.post("/court-form", {
-      name: form.name,
-      city: form.city,
-      district: form.district,
-      image_url: form.image_url,
-      open_time: form.open_time,
-      close_time: form.close_time,
-      field_count: form.field_count,
-      maps_url: form.maps_url,
-      contact_name: form.contact_name,
-      contact_whatsapp: form.contact_whatsapp,
-      rating: form.rating,
+    const fd = new FormData();
+    fd.append("name", form.name);
+    fd.append("city", form.city);
+    fd.append("district", form.district);
+    fd.append("open_time", form.open_time);
+    fd.append("close_time", form.close_time);
+    fd.append("field_count", String(Number(form.field_count)));
+    fd.append("maps_url", form.maps_url);
+    fd.append("contact_name", form.contact_name);
+    fd.append("contact_whatsapp", form.contact_whatsapp);
+    fd.append("rating", String(form.rating ?? ""));
+    fd.append("image", selectedFile.value);
+
+    // Kirim data ke backend
+    const res = await api.post("/court-form", fd, {
+      headers: { "Content-Type": "multipart/form-data" },
     });
 
     // Response sukses
     if (res.data?.message) {
       toast.success(res.data.message);
+      resetForm(); // Hapus value sebelumnya
+      isOpen.value = false; // Modal otomatis tertutup
     }
   } catch (e) {
-    console.error("Data lapangan gagal ditambahkan", e);
-    const errors = e?.response?.data?.errors;
+    console.log("Status:", e?.response?.status);
+    console.log("Data:", e?.response?.data);
+    console.log("Errors:", JSON.stringify(e?.response?.data?.errors, null, 2));
 
+    const errors = e?.response?.data?.errors;
     if (errors) {
       const firstField = Object.keys(errors)[0];
       const firstMessage = errors[firstField][0];
-      toast.error(firstMessage);
+      toast.error(`${firstField}: ${firstMessage}`);
+    } else {
+      toast.error(
+        e?.response?.data?.message || "Data lapangan gagal ditambahkan"
+      );
     }
   }
 };
