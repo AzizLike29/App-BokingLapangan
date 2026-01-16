@@ -193,14 +193,43 @@
               <!-- Maps URL -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                  Link Google Maps
+                  Lokasi (Alamat / Koordinat)
+                  <span class="text-red-500">*</span>
                 </label>
+
                 <input
                   v-model="form.maps_url"
-                  type="url"
-                  placeholder="google Maps Tersedia"
+                  type="text"
+                  required
+                  placeholder="Contoh: GOR Badminton Semarang / -6.2000,106.8166"
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                 />
+
+                <p class="text-xs text-gray-500 mt-1">
+                  Tips: kamu bisa isi nama tempat atau koordinat.
+                </p>
+              </div>
+
+              <!-- Preview Maps -->
+              <div v-if="mapsEmbedUrl" class="mt-3">
+                <div class="rounded-lg overflow-hidden border border-gray-200">
+                  <iframe
+                    :src="mapsEmbedUrl"
+                    class="w-full h-64 border-0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+
+                <a
+                  :href="mapsOpenUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex mt-2 text-sm text-emerald-700 hover:underline"
+                >
+                  Buka di Google Maps
+                </a>
               </div>
 
               <!-- Contact Info -->
@@ -284,7 +313,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import { PlusCircleIcon } from "@heroicons/vue/24/outline";
 import { useToast } from "vue-toastification";
 import api from "../../api";
@@ -293,6 +322,18 @@ const toast = useToast();
 
 // Modal State
 const isOpen = ref(false);
+
+const mapsOpenUrl = computed(() => {
+  const q = (form.maps_url || "").trim();
+  if (!q) return "";
+  return `https://www.google.com/maps?q=${encodeURIComponent(q)}`;
+});
+
+const mapsEmbedUrl = computed(() => {
+  const q = (form.maps_url || "").trim();
+  if (!q) return "";
+  return `https://www.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+});
 
 // Inisialisasi form data
 const form = reactive({

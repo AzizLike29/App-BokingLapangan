@@ -15,8 +15,6 @@ class ExperienceController extends Controller
         // Data yang sudah tervalidasi di request
         $data = $request->validated();
 
-        // dd($request->all());
-
         // Simpan file gambar
         $path = $request->file('image')->store('courts', 'public');
 

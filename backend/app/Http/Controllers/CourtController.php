@@ -15,6 +15,9 @@ class CourtController extends Controller
         if ($request->has('city')) {
             $query->where('city', 'LIKE', '%' . $request->city . '%');
         }
+        if ($request->has('name')) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
 
         return response()->json([
             'data' => $query->get(),

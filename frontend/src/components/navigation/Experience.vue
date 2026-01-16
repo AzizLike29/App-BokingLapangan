@@ -5,7 +5,7 @@
         class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
       >
         <!-- Left Partial -->
-        <SearchButton />
+        <SearchButton @search="fetchCourts" @reset="fetchCourts" />
 
         <!-- Right Partial -->
         <CourtForm />
@@ -179,32 +179,38 @@ onMounted(() => {
   }, 1000);
 });
 
-onMounted(async () => {
-  try {
-    // Ambil data dari API
-    const res = await api.get("/courts", {
-      params: { city: "Bekasi" },
-    });
+// Pagination
+const perPage = 8;
+const currentPage = ref(1);
 
-    // Value respons
+const fetchCourts = async ({ name = "", city = "" } = {}) => {
+  try {
+    isLoading.value = true;
+    error.value = null;
+
+    const params = {};
+    if (name) params.name = name;
+    if (city) params.city = city;
+
+    const res = await api.get("/courts", { params });
     courts.value = res.data.data || [];
 
-    // Validation apabila data kosong
+    currentPage.value = 1;
+
     if (!courts.value.length) {
       error.value = "Tidak ada data lapangan yang tersedia";
     }
   } catch (e) {
-    // Cegah error
     console.error(e);
     error.value = "Gagal memuat data lapangan";
   } finally {
     isLoading.value = false;
   }
-});
+};
 
-// Pagination
-const perPage = 8;
-const currentPage = ref(1);
+onMounted(() => {
+  fetchCourts();
+});
 
 const totalPages = computed(() => {
   if (!courts.value.length) return 1;
