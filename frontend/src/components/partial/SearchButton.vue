@@ -8,7 +8,7 @@
         <input
           v-model.trim="name"
           type="text"
-          placeholder="Cari nama Lapangan"
+          :placeholder="t('searchButton.namePlaceholder')"
           @keyup.enter="onSearch"
           class="block w-full rounded-full border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
@@ -19,7 +19,7 @@
         <input
           v-model.trim="city"
           type="text"
-          placeholder="Pilih kota / daerah"
+          :placeholder="t('searchButton.cityPlaceholder')"
           @keyup.enter="onSearch"
           class="block w-full rounded-full border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
@@ -32,7 +32,7 @@
           class="inline-flex gap-2 w-full sm:w-auto items-center justify-center rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
           <MagnifyingGlassIcon class="h-4 w-4" />
-          <span>Search</span>
+          <span>{{ t("searchButton.button") }}</span>
         </button>
       </div>
     </div>
@@ -42,6 +42,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const emit = defineEmits(["search", "reset"]);
 

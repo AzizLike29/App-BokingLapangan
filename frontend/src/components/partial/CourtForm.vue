@@ -7,7 +7,7 @@
         @click="isOpen = true"
       >
         <PlusCircleIcon class="h-4 w-4" />
-        <span>Tambah data</span>
+        <span>{{ t("courtForm.addData") }}</span>
       </button>
     </div>
 
@@ -24,9 +24,11 @@
         <div
           class="bg-linear-to-r from-emerald-600 to-emerald-700 p-6 rounded-t-2xl"
         >
-          <h2 class="text-2xl font-bold text-white">Form Lapangan Badminton</h2>
+          <h2 class="text-2xl font-bold text-white">
+            {{ t("courtForm.header") }}
+          </h2>
           <p class="text-emerald-100 text-sm mt-1">
-            Lengkapi informasi lapangan badminton Anda
+            {{ t("courtForm.headerChild") }}
           </p>
         </div>
 
@@ -34,7 +36,7 @@
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-1">
               <label class="block text-sm font-medium text-gray-700 mb-2">
-                Foto Lapangan
+                {{ t("courtForm.imageCourts") }}
               </label>
               <div class="relative">
                 <div
@@ -68,7 +70,9 @@
                           d="M4 16l4-4a3 5 0 014 0l4 4m0 0l4-4a3 5 0 014 0l4 4M4 16v4a2 2 0 002 2h12a2 2 0 002-2v-4"
                         />
                       </svg>
-                      <span class="text-sm">Upload Foto</span>
+                      <span class="text-sm">{{
+                        t("courtForm.imageUpload")
+                      }}</span>
                     </div>
                   </div>
                   <input
@@ -85,7 +89,7 @@
                   type="button"
                   class="relative z-10 mt-2 w-full px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition"
                 >
-                  Hapus Foto
+                  {{ t("courtForm.deleteImage") }}
                 </button>
               </div>
             </div>
@@ -94,13 +98,14 @@
               <!-- Nama Lapangan -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                  Nama Lapangan <span class="text-red-500">*</span>
+                  {{ t("courtForm.nameCourt") }}
+                  <span class="text-red-500">*</span>
                 </label>
                 <input
                   v-model="form.name"
                   type="text"
                   required
-                  placeholder="Contoh: GOR Badminton Semarang"
+                  :placeholder="t('courtForm.placeholder.placeName')"
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                 />
               </div>
@@ -109,25 +114,27 @@
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Kota <span class="text-red-500">*</span>
+                    {{ t("courtForm.cityCourt") }}
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     v-model="form.city"
                     type="text"
                     required
-                    placeholder="Contoh: Semarang"
+                    :placeholder="t('courtForm.placeholder.placeCity')"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Kecamatan <span class="text-red-500">*</span>
+                    {{ t("courtForm.district") }}
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     v-model="form.district"
                     type="text"
                     required
-                    placeholder="Contoh: Tembalang"
+                    :placeholder="t('courtForm.placeholder.placeDistrict')"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
@@ -137,7 +144,8 @@
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Jam Buka <span class="text-red-500">*</span>
+                    {{ t("courtForm.openClock") }}
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     v-model="form.open_time"
@@ -148,7 +156,8 @@
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Jam Tutup <span class="text-red-500">*</span>
+                    {{ t("courtForm.closeClock") }}
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     v-model="form.close_time"
@@ -163,20 +172,21 @@
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Jumlah Lapangan <span class="text-red-500">*</span>
+                    {{ t("courtForm.numberCourts") }}
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     v-model.number="form.field_count"
                     type="number"
                     min="1"
                     required
-                    placeholder="Contoh: 8"
+                    :placeholder="t('courtForm.placeholder.placeCountCourts')"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                   />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Rating
+                    {{ t("courtForm.rating") }}
                   </label>
                   <input
                     v-model.number="form.rating"
@@ -193,7 +203,7 @@
               <!-- Maps URL -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                  Lokasi (Alamat / Koordinat)
+                  {{ t("courtForm.location") }}
                   <span class="text-red-500">*</span>
                 </label>
 
@@ -201,12 +211,12 @@
                   v-model="form.maps_url"
                   type="text"
                   required
-                  placeholder="Contoh: GOR Badminton Semarang / -6.2000,106.8166"
+                  :placeholder="t('courtForm.placeholder.placeLocation')"
                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition"
                 />
 
                 <p class="text-xs text-gray-500 mt-1">
-                  Tips: kamu bisa isi nama tempat atau koordinat.
+                  {{ t("courtForm.locTextChild") }}
                 </p>
               </div>
 
@@ -228,7 +238,7 @@
                   rel="noopener noreferrer"
                   class="inline-flex mt-2 text-sm text-emerald-700 hover:underline"
                 >
-                  Buka di Google Maps
+                  {{ t("courtForm.openMaps") }}
                 </a>
               </div>
 
@@ -248,27 +258,27 @@
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  Informasi Kontak
+                  {{ t("courtForm.contactInfo") }}
                 </h3>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Nama Kontak
+                    {{ t("courtForm.nameTxtContact") }}
                   </label>
                   <input
                     v-model="form.contact_name"
                     type="text"
-                    placeholder="Masukkan nama kontak"
+                    :placeholder="t('courtForm.placeholder.placeInfoContact')"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition bg-white"
                   />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">
-                    WhatsApp
+                    {{ t("courtForm.medWhatsapp") }}
                   </label>
                   <input
                     v-model="form.contact_whatsapp"
                     type="tel"
-                    placeholder="Masukkan nomer telepon"
+                    :placeholder="t('courtForm.placeholder.placeNumberTelp')"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition bg-white"
                   />
                 </div>
@@ -284,7 +294,7 @@
               type="button"
               class="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium"
             >
-              Batal
+              {{ t("courtForm.closeBtn") }}
             </button>
             <button
               type="submit"
@@ -303,7 +313,7 @@
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              Submit
+              {{ t("courtForm.submitBtn") }}
             </button>
           </div>
         </form>
@@ -317,6 +327,8 @@ import { ref, reactive, computed } from "vue";
 import { PlusCircleIcon } from "@heroicons/vue/24/outline";
 import { useToast } from "vue-toastification";
 import api from "../../api";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const toast = useToast();
 

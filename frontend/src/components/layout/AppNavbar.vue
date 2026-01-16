@@ -19,7 +19,7 @@
             <div class="flex space-x-4">
               <RouterLink
                 v-for="item in navigation"
-                :key="item.name"
+                :key="item.key"
                 :to="item.href"
                 :class="[
                   isActive(item)
@@ -29,7 +29,7 @@
                 ]"
                 :aria-current="isActive(item) ? 'page' : undefined"
               >
-                {{ item.name }}
+                {{ t(item.name) }}
               </RouterLink>
             </div>
           </div>
@@ -44,7 +44,7 @@
             @click="router.push('/login')"
           >
             <UserIcon class="size-5" aria-hidden="true" />
-            <span>Sign In</span>
+            <span>{{ t("signIn") }}</span>
           </button>
 
           <!-- Menu Bahasa: hanya muncul di DESKTOP -->
@@ -74,27 +74,27 @@
                 <MenuItem v-slot="{ active }">
                   <button
                     type="button"
-                    @click="currentLanguage = 'id'"
+                    @click="locale = 'id'"
                     :class="[
                       active ? 'bg-white/5 outline-hidden' : '',
                       'flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300',
                     ]"
                   >
                     <span>🇮🇩</span>
-                    <span>Bahasa Indonesia</span>
+                    <span>{{ t("language.id") }}</span>
                   </button>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
                   <button
                     type="button"
-                    @click="currentLanguage = 'en'"
+                    @click="locale = 'en'"
                     :class="[
                       active ? 'bg-white/5 outline-hidden' : '',
                       'flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300',
                     ]"
                   >
                     <span>🇺🇸</span>
-                    <span>English</span>
+                    <span>{{ t("language.en") }}</span>
                   </button>
                 </MenuItem>
               </MenuItems>
@@ -107,7 +107,7 @@
               class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500"
             >
               <span class="absolute -inset-0.5"></span>
-              <span class="sr-only">Open main menu</span>
+              <span class="sr-only">{{ t("openMainMenu") }}</span>
               <Bars3Icon v-if="!open" class="block size-6" aria-hidden="true" />
               <XMarkIcon v-else class="block size-6" aria-hidden="true" />
             </DisclosureButton>
@@ -156,7 +156,7 @@
             class="w-full inline-flex justify-center items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             <UserIcon class="size-5" aria-hidden="true" />
-            <span>Sign In</span>
+            <span>{{ t("signIn") }}</span>
           </button>
 
           <!-- Bahasa mobile -->
@@ -164,7 +164,7 @@
             <p
               class="text-xs font-medium uppercase tracking-wide text-gray-400"
             >
-              Bahasa
+              {{ t("lang") }}
             </p>
             <div class="flex gap-2">
               <button
@@ -203,6 +203,8 @@
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+const { locale, t } = useI18n();
 import { useRouter, useRoute, RouterLink } from "vue-router";
 import api from "../../api";
 
@@ -226,13 +228,13 @@ const router = useRouter(); // Router.push
 const route = useRoute(); // Route yang aktif
 
 const navigation = [
-  { name: "Home", href: "/badmin-kuy" },
-  { name: "Experience", href: "/experience" },
-  { name: "Contact Us", href: "/contact-us" },
+  { name: "nav.home", href: "/badmin-kuy" },
+  { name: "nav.experience", href: "/experience" },
+  { name: "nav.contact", href: "/contact-us" },
 ];
 
 // State bahasa yang aktif
-const currentLanguage = ref("id");
+const currentLanguage = locale;
 
 // Fungsi untuk navigation yang aktif
 const isActive = (item) => item.href === route.path;

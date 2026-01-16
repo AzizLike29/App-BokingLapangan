@@ -1,0 +1,75 @@
+{
+    "lang": "Bahasa",
+    "search": "Cari",
+    "openMainMenu": "Buka Menu Utama",
+    "signIn": "Masuk",
+    "language": {
+        "id": "Indonesian",
+        "en": "English"
+    },
+    "nav": {
+        "home": "Beranda",
+        "experience": "Pengalaman",
+        "contact": "Hubungi Kami"
+    },
+    "loadingCourts": "Memuat data lapangan...",
+    "view": "Lihat",
+    "faq": {
+        "title": "FAQ",
+        "items": [
+            {
+                "q": "Apa kelebihan sewa lapangan di BadminKuy?",
+                "a": "Kamu bisa melihat daftar lapangan lengkap dengan jam buka, rating, lokasi, dan kontak pengelola dalam satu platform."
+            },
+            {
+                "q": "Bagaimana cara memesan lapangan di BadminKuy?",
+                "a": "Pilih lapangan, cek jam yang tersedia, lalu ikuti instruksi pemesanan di detail lapangan. Beberapa lapangan bisa dipesan langsung, sebagian lewat WhatsApp."
+            },
+            {
+                "q": "Berapa biaya sewa lapangan di BadminKuy?",
+                "a": "Biaya sewa ditentukan oleh masing-masing pengelola lapangan dan bisa kamu lihat di halaman detail lapangan."
+            },
+            {
+                "q": "Apakah bisa membatalkan atau mengubah jadwal booking?",
+                "a": "Kebijakan pembatalan mengikuti aturan masing-masing lapangan. Hubungi pengelola melalui WhatsApp yang tertera jika ingin mengubah jadwal."
+            }
+        ]
+    },
+    "searchButton": {
+        "namePlaceholder": "Cari nama lapangan",
+        "cityPlaceholder": "Pilih kota / daerah",
+        "button": "cari"
+    },
+    "courtForm": {
+        "addData": "Tambah data",
+        "header": "Form Lapangan Badminton",
+        "headerChild": "Lengkapi informasi lapangan badminton Anda",
+        "imageCourts": "Foto Lapangan",
+        "imageUpload": "Unduh Foto",
+        "deleteImage": "Hapus Foto",
+        "nameCourt": "Nama Lapangan",
+        "cityCourt": "Kota",
+        "district": "Kecamatan",
+        "openClock": "Jam Buka",
+        "closeClock": "Jam Tutup",
+        "numberCourts": "Jumlah Lapangan",
+        "rating": "Peringkat",
+        "location": "Lokasi (Alamat / Koordinat)",
+        "locTextChild": "Tips: kamu bisa isi nama tempat atau koordinat",
+        "openMaps": "Buka di Google Maps",
+        "contactInfo": "Informasi Kontak",
+        "nameTxtContact": "Nama Kontak",
+        "medWhatsapp": "WhatsApp",
+        "closeBtn": "Batal",
+        "submitBtn": "Submit",
+        "placeholder": {
+            "placeName": "Contoh: GOR Bulu Tangkis Semarang",
+            "placeCity": "Contoh: Semarang",
+            "placeDistrict": "Contoh: Tembalang",
+            "placeCountCourts": "Contoh: 8",
+            "placeLocation": "Contoh: GOR Badminton Semarang / -6.2000,106.8166",
+            "placeInfoContact": "Masukkan nama kontak",
+            "placeNumberTelp": "Masukkan nomer telepon"
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "lang": "Language",
+    "search": "Search",
+    "openMainMenu": "Open Main Menu",
+    "signIn": "Sign In",
+    "language": {
+        "id": "Indonesian",
+        "en": "English"
+    },
+    "nav": {
+        "home": "Home",
+        "experience": "Experience",
+        "contact": "Contact"
+    },
+    "loadingCourts": "Loading field data...",
+    "viw": "View",
+    "faq": {
+        "title": "FAQ",
+        "items": [
+            {
+                "q": "What are the advantages of renting a court at BadminKuy?",
+                "a": "You can see a complete list of fields with opening hours, ratings, locations, and manager contact details on one platform."
+            },
+            {
+                "q": "How do you reserve a court at BadminKuy?",
+                "a": "Select a court, check the available times, then follow the booking instructions in the court details. Some courts can be booked directly, while others can be booked via WhatsApp."
+            },
+            {
+                "q": "How much does it cost to rent a court at BadminKuy?",
+                "a": "Rental fees are determined by each field manager and can be found on the field details page."
+            },
+            {
+                "q": "Can I cancel or change my booking schedule?",
+                "a": "Cancellation policies follow the rules of each field. Contact the manager via WhatsApp if you want to change the schedule."
+            }
+        ]
+    },
+    "searchButton": {
+        "namePlaceholder": "Search for field name",
+        "cityPlaceholder": "Select city / area",
+        "button": "search"
+    },
+    "courtForm": {
+        "addData": "Add data",
+        "header": "Badminton Court Form",
+        "headerChild": "Complete your badminton court information",
+        "imageCourts": "Court Photo",
+        "imageUpload": "Upload Photo",
+        "deleteImage": "Delete Photo",
+        "nameCourt": "Court Name",
+        "cityCourt": "City",
+        "district": "District",
+        "openClock": "Opening Time",
+        "closeClock": "Closing Time",
+        "numberCourts": "Number of Courts",
+        "rating": "Rating",
+        "location": "Location (Address / Coordinates)",
+        "locTextChild": "Tip: you can enter a place name or coordinates",
+        "openMaps": "Open in Google Maps",
+        "contactInfo": "Contact Information",
+        "nameTxtContact": "Contact Name",
+        "medWhatsapp": "WhatsApp",
+        "closeBtn": "Cancel",
+        "submitBtn": "Submit",
+        "placeholder": {
+            "placeName": "Example: Semarang Badminton Court",
+            "placeCity": "Example: Semarang",
+            "placeDistrict": "Example: Tembalang",
+            "placeCountCourts": "Example: 8",
+            "placeLocation": "Example: Semarang Badminton Court / -6.2000, 106.8166",
+            "placeInfoContact": "Enter contact name",
+            "placeNumberTelp": "Enter phone number"
+        }
+    }
+}

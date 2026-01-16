@@ -21,7 +21,7 @@
             <span
               class="inline-flex h-5 w-5 items-center justify-center rounded-full border-2 border-emerald-500 border-t-transparent animate-spin"
             ></span>
-            <span>Memuat data lapangan...</span>
+            <span>{{ t("loadingCourts") }}</span>
           </div>
         </div>
 
@@ -84,7 +84,7 @@
                       rel="noopener"
                       class="text-emerald-600 hover:underline"
                     >
-                      View
+                      {{ t("view") }}
                     </a>
                   </div>
                   <div class="flex items-center gap-1">
@@ -125,12 +125,14 @@
 
       <!-- FAQ / Pertanyaan -->
       <div class="mt-10 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-center text-gray-900">FAQ</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900">
+          {{ t("faq.title") }}
+        </h2>
 
         <div class="mt-6 border-t border-gray-200">
           <div
             v-for="(item, index) in faqs"
-            :key="item.question"
+            :key="index"
             class="border-b border-gray-200"
           >
             <button
@@ -139,7 +141,7 @@
               class="flex w-full items-center justify-between py-6 text-left"
             >
               <span class="text-base sm:text-lg font-semibold text-gray-900">
-                {{ item.question }}
+                {{ item.q }}
               </span>
               <span class="text-2xl font-bold text-gray-900">
                 {{ openFaq === index ? "−" : "+" }}
@@ -150,7 +152,7 @@
               v-if="openFaq === index"
               class="pb-6 pr-8 text-sm text-gray-600"
             >
-              {{ item.answer }}
+              {{ item.a }}
             </div>
           </div>
         </div>
@@ -166,18 +168,13 @@ import SearchButton from "../partial/SearchButton.vue";
 import CourtForm from "../partial/CourtForm.vue";
 import defaultImage from "../../assets/img/example-image.jpg";
 import { ClockIcon } from "@heroicons/vue/24/outline";
+import { useI18n } from "vue-i18n";
+const { t, tm } = useI18n();
 
 // Initial
 const courts = ref([]);
 const isLoading = ref(true);
 const error = ref(null);
-
-// Simulasi loading
-onMounted(() => {
-  setTimeout(() => {
-    isLoading.value = false;
-  }, 1000);
-});
 
 // Pagination
 const perPage = 8;
@@ -208,8 +205,13 @@ const fetchCourts = async ({ name = "", city = "" } = {}) => {
   }
 };
 
-onMounted(() => {
-  fetchCourts();
+// Loading dikontrol satu kali dan fetcourts jangan di set isLoading lagi
+onMounted(async () => {
+  isLoading.value = true;
+
+  await Promise.all([fetchCourts(), new Promise((r) => setTimeout(r, 1000))]);
+
+  isLoading.value = false;
 });
 
 const totalPages = computed(() => {
@@ -223,30 +225,10 @@ const paginatedCourts = computed(() => {
   return courts.value.slice(start, end);
 });
 
-const faqs = ref([
-  {
-    question: "Apa kelebihan sewa lapangan di BadminKuy?",
-    answer:
-      "Kamu bisa melihat daftar lapangan lengkap dengan jam buka, rating, lokasi, dan kontak pengelola dalam satu platform.",
-  },
-  {
-    question: "Bagaimana cara memesan lapangan di BadminKuy?",
-    answer:
-      "Pilih lapangan, cek jam yang tersedia, lalu ikuti instruksi pemesanan di detail lapangan. Beberapa lapangan bisa dipesan langsung, sebagian lewat WhatsApp.",
-  },
-  {
-    question: "Berapa biaya sewa lapangan di BadminKuy?",
-    answer:
-      "Biaya sewa ditentukan oleh masing-masing pengelola lapangan dan bisa kamu lihat di halaman detail lapangan.",
-  },
-  {
-    question: "Apakah bisa membatalkan atau mengubah jadwal booking?",
-    answer:
-      "Kebijakan pembatalan mengikuti aturan masing-masing lapangan. Hubungi pengelola melalui WhatsApp yang tertera jika ingin mengubah jadwal.",
-  },
-]);
-
 const openFaq = ref(null);
+
+// Ambil array faq yang di json
+const faqs = computed(() => tm("faq.items"));
 
 const toggleFaq = (index) => {
   openFaq.value = openFaq.value === index ? null : index;

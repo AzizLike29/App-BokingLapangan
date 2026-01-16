@@ -5,8 +5,11 @@ import router from './router'
 import { animate } from 'motion'
 import Toast, { POSITION } from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import i18n from "./components/lang/i18n.js";
 
 const app = createApp(App)
+
+app.use(i18n);
 
 app.directive('fade-up', {
     mounted(el) {
