@@ -71,5 +71,50 @@
             "placeInfoContact": "Enter contact name",
             "placeNumberTelp": "Enter phone number"
         }
-    }
+    },
+    "Home": {
+        "featuredVenues": "Best Venues for You",
+        "discAllExperience": "Discover all experiences",
+        "loadingData": "Loading court data...",
+        "aboutBadmin": "Why Book Through BadminKuy?",
+        "pltOnline": "Online Platform",
+        "reserBadmin": "Badminton court bookings can be made through the website or online.",
+        "recomenField": "Recommended Courts",
+        "findBadminton": "Makes it easy to find badminton courts in the Bekasi area.",
+        "onlnPayment": "Online Payment",
+        "provideOnline": "Provides online payments for customer security and convenience.",
+        "titleAbout": "About Us",
+        "descAbout1": "BadminKuy is a badminton court booking platform that makes it easy for you to search, compare, and book your favorite courts online.",
+        "descAbout2": "We collaborate with various sports centers and badminton courts to provide a comfortable, practical, and transparent playing experience for all players, from beginners to professional athletes.",
+        "featuredAthlt": "Featured Athletes",
+        "featuredDesc": "Get to know athletes who frequently play on BadminKuy",
+        "Athlet": {
+            "hero1": "Kevin Sanjaya",
+            "hero2": "Marcus Gideon",
+            "hero3": "Mohammad Ahsan",
+            "hero4": "Hendra Setiawan",
+            "hero5": "Greysia Polii",
+            "hero6": "Gregoria Mariska Tanjung",
+            "hero7": "Fajar Alfian",
+            "hero8": "Muhammad Rian Ardianto",
+            "positionMens": "Men's Doubles",
+            "positionWomens": "Women's Doubles"
+        },
+        "communityAch": "Community & Achievements",
+        "communityText": "Building badminton excellence and fostering a spirit of togetherness across the United Arab Emirates since 2025.",
+        "badgeYear": "Since 2019",
+        "brandPartners": "Trusted Brand Partners",
+        "descriptionPartners": "Official dealers of world-class brands Yonex, Victor, and Apacs.",
+        "threeLoc": "3 Locations",
+        "premiumFacilities": "Premium Facilities",
+        "descPremium": "Successfully managing high-end sports complexes in Abu Dhabi and Al Ain.",
+        "levelAthlt": "All Levels",
+        "athltDev": "Athletic Development",
+        "athltDesc": "Developing athletic talent through structured training programs",
+        "badgeUaGc": "UAE & GCC",
+        "badgeTitle": "Regional Impact",
+        "descRegion": "Building a strong badminton culture across the UAE and GCC regions",
+        "titleMission": "Our Mission",
+        "textMission": "To promote an active lifestyle and enhance the sports experience through premium equipment, world-class facilities, and training by expert coaches. We are committed to developing talent and building a dynamic badminton community that inspires excellence at every level."
+        }
 }

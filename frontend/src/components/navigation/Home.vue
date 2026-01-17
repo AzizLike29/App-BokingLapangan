@@ -10,7 +10,9 @@
     <section class="max-w-6xl mx-auto py-12 px-4">
       <!-- Header -->
       <div class="flex h-18 items-center justify-between">
-        <h1 class="text-2xl font-bold font-cairo">Featured Venues For You</h1>
+        <h1 class="text-2xl font-bold font-cairo">
+          {{ t("Home.featuredVenues") }}
+        </h1>
         <button
           type="button"
           class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 cursor-pointer transform transition-all duration-700 ease-in-out"
@@ -28,7 +30,7 @@
             <circle cx="11" cy="11" r="7" />
             <line x1="16.65" y1="16.65" x2="21" y2="21" />
           </svg>
-          <span>Discover All Experiences</span>
+          <span>{{ t("Home.discAllExperience") }}</span>
         </button>
       </div>
 
@@ -42,7 +44,7 @@
             <span
               class="inline-flex h-5 w-5 items-center justify-center rounded-full border-2 border-emerald-500 border-t-transparent animate-spin"
             ></span>
-            <span>Memuat data lapangan...</span>
+            <span>{{ t("Home.loadingData") }}</span>
           </div>
         </div>
 
@@ -125,12 +127,12 @@
       </div>
     </section>
 
-    <!-- Three card (Recommended Platform) -->
+    <!-- Three card -->
     <section class="mt-6" :class="{ 'animate-pulse': isLoading }">
       <!-- Title + Animated Line -->
       <div class="text-center mb-8">
         <h2 class="text-2xl font-semibold text-gray-900">
-          Why Book with BadminKuy?
+          {{ t("Home.aboutBadmin") }}
         </h2>
 
         <!-- Garis animasi -->
@@ -152,10 +154,10 @@
             <DevicePhoneMobileIcon class="h-7 w-7 text-emerald-600" />
           </div>
           <h1 class="text-lg font-semibold text-gray-900 mb-1">
-            Platform Online
+            {{ t("Home.pltOnline") }}
           </h1>
           <span class="text-sm text-gray-500">
-            Badminton court reservations can be made via the website or online.
+            {{ t("Home.reserBadmin") }}
           </span>
         </div>
         <!-- Card 2 -->
@@ -168,10 +170,10 @@
             <BuildingOfficeIcon class="h-7 w-7 text-emerald-600" />
           </div>
           <h1 class="text-lg font-semibold text-gray-900 mb-1">
-            Recomemended Field
+            {{ t("Home.recomenField") }}
           </h1>
           <span class="text-sm text-gray-500">
-            Makes it easy to find badminton courts in the Bekasi area.
+            {{ t("Home.findBadminton") }}
           </span>
         </div>
         <!-- Card 3 -->
@@ -184,10 +186,10 @@
             <CreditCardIcon class="h-7 w-7 text-emerald-600" />
           </div>
           <h1 class="text-lg font-semibold text-gray-900 mb-1">
-            Online Payment
+            {{ t("Home.onlnPayment") }}
           </h1>
           <span class="text-sm text-gray-500">
-            Providing online payments for customer security and convenience.
+            {{ t("Home.provideOnline") }}
           </span>
         </div>
       </div>
@@ -224,15 +226,14 @@
           </div>
         </div>
         <div>
-          <h2 class="text-3xl font-semibold mb-4">About Us</h2>
+          <h2 class="text-3xl font-semibold mb-4">
+            {{ t("Home.titleAbout") }}
+          </h2>
           <p class="text-gray-600 leading-relaxed mb-3">
-            BadminKuy is a badminton court booking platform that makes it easy
-            for you to search, compare, and book your favorite courts online.
+            {{ t("Home.descAbout1") }}
           </p>
           <p class="text-gray-600 leading-relaxed">
-            We work with various sports centers and badminton halls to provide a
-            comfortable, convenient, and transparent playing experience for all
-            players, from beginners to athletes.
+            {{ t("Home.descAbout2") }}
           </p>
         </div>
       </div>
@@ -244,10 +245,10 @@
       :class="{ 'animate-pulse': isLoading }"
     >
       <h2 class="text-2xl font-semibold text-gray-900 text-center">
-        Featured Athletes
+        {{ t("Home.featuredAthlt") }}
       </h2>
       <p class="mt-2 text-sm text-gray-500 text-center">
-        Kenalan sama atlet-atlet yang sering main di BadminKuy.
+        {{ t("Home.featuredDesc") }}
       </p>
 
       <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
@@ -258,8 +259,12 @@
             alt="Kevin Sanjaya"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Kevin Sanjaya</h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero1") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
 
         <!-- Atlet 2 -->
@@ -269,8 +274,12 @@
             alt="Marcus Gideon"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Marcus Gideon</h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero2") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
 
         <!-- Atlet 3 -->
@@ -280,8 +289,12 @@
             alt="Mohammad Ahsan"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Mohammad Ahsan</h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero3") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
 
         <!-- Atlet 4 -->
@@ -291,8 +304,12 @@
             alt="Hendra Setiawan"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Hendra Setiawan</h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero4") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
 
         <!-- Atlet 5 -->
@@ -302,8 +319,12 @@
             alt="Greysia Polii"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Greysia Polii</h3>
-          <p class="mt-1 text-sm text-gray-500">Women’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero5") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionWomens") }}
+          </p>
         </div>
 
         <!-- Atlet 6 -->
@@ -314,9 +335,11 @@
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
           <h3 class="text-lg font-semibold text-gray-900">
-            Gregoria Mariska Tunjung
+            {{ t("Home.Athlet.hero6") }}
           </h3>
-          <p class="mt-1 text-sm text-gray-500">Women’s Singles</p>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionWomens") }}
+          </p>
         </div>
 
         <!-- Atlet 7 -->
@@ -326,8 +349,12 @@
             alt="Fajar Alfian"
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
-          <h3 class="text-lg font-semibold text-gray-900">Fajar Alfian</h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ t("Home.Athlet.hero7") }}
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
 
         <!-- Atlet 8 -->
@@ -338,9 +365,11 @@
             class="h-40 w-40 object-cover rounded-xl mb-3 transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-1"
           />
           <h3 class="text-lg font-semibold text-gray-900">
-            Muhammad Rian Ardianto
+            {{ t("Home.Athlet.hero8") }}
           </h3>
-          <p class="mt-1 text-sm text-gray-500">Men’s Doubles</p>
+          <p class="mt-1 text-sm text-gray-500">
+            {{ t("Home.Athlet.positionMens") }}
+          </p>
         </div>
       </div>
     </section>
@@ -350,11 +379,10 @@
       <!-- Title dan Subtitle -->
       <div class="text-center">
         <h1 class="text-3xl font-semibold text-white">
-          Community &amp; Achievements
+          {{ t("Home.communityAch") }}
         </h1>
         <p class="mt-3 text-slate-300 max-w-2xl mx-auto">
-          Building badminton excellence and fostering community spirit across
-          the UAE since 2025.
+          {{ t("Home.communityText") }}
         </p>
       </div>
 
@@ -372,15 +400,15 @@
           <!-- Badge -->
           <span
             class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
-            >Since 2019</span
+            >{{ t("Home.badgeYear") }}</span
           >
           <!-- Title -->
           <h3 class="text-xl font-semibold text-white mb-2">
-            Trusted Brand Partners
+            {{ t("Home.brandPartners") }}
           </h3>
           <!-- Description -->
           <p class="text-sm leading-relaxed text-slate-300">
-            Official dealer of world-class brands Yonex, Victor, and Apacs
+            {{ t("Home.descriptionPartners") }}
           </p>
         </div>
         <!-- Cards 2 -->
@@ -395,16 +423,15 @@
           <!-- Badge -->
           <span
             class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
-            >3 Locations</span
+            >{{ t("Home.threeLoc") }}</span
           >
           <!-- Title -->
           <h3 class="text-xl font-semibold text-white mb-2">
-            Premium Facilities
+            {{ t("Home.premiumFacilities") }}
           </h3>
           <!-- Description -->
           <p class="text-sm leading-relaxed text-slate-300">
-            Successfully managed top-tier sports complexes in Abu Dhabi &amp; Al
-            Ain.
+            {{ t("Home.descPremium") }}
           </p>
         </div>
         <!-- Cards 3 -->
@@ -419,15 +446,15 @@
           <!-- Badge -->
           <span
             class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
-            >All Levels</span
+            >{{ t("Home.levelAthlt") }}</span
           >
           <!-- Title -->
           <h3 class="text-xl font-semibold text-white mb-2">
-            Athletic Development
+            {{ t("Home.athltDev") }}
           </h3>
           <!-- Description -->
           <p class="text-sm leading-relaxed text-slate-300">
-            Nurturing athletic talent through structured training programs.
+            {{ t("Home.athltDesc") }}
           </p>
         </div>
         <!-- Cards 4 -->
@@ -442,25 +469,26 @@
           <!-- Badge -->
           <span
             class="mb-4 inline-flex items-center rounded-full bg-slate-800 px-4 py-1 text-xs font-semibold text-slate-100"
-            >UAE &amp; GCC</span
+            >{{ t("Home.badgeUaGc") }}</span
           >
           <!-- Title -->
-          <h3 class="text-xl font-semibold text-white mb-2">Regional Impact</h3>
+          <h3 class="text-xl font-semibold text-white mb-2">
+            {{ t("Home.badgeTitle") }}
+          </h3>
           <!-- Description -->
           <p class="text-sm leading-relaxed text-slate-300">
-            Building a strong badminton culture across the UAE &amp; GCC region.
+            {{ t("Home.descRegion") }}
           </p>
         </div>
       </div>
 
       <!-- Our Mission -->
       <div class="text-center py-12 px-4">
-        <h1 class="text-3xl font-semibold text-white">Our Mission</h1>
+        <h1 class="text-3xl font-semibold text-white">
+          {{ t("Home.titleMission") }}
+        </h1>
         <p class="mt-3 text-slate-300 max-w-2xl mx-auto">
-          To promote active lifestyles and elevate sporting experiences through
-          premium equipment, world-class facilities, and expert coaching. We are
-          committed to nurturing talent and building a vibrant badminton
-          community that inspires excellence at every level.
+          {{ t("Home.textMission") }}
         </p>
       </div>
 
@@ -498,6 +526,8 @@ import { TrophyIcon } from "@heroicons/vue/24/outline";
 import { MapPinIcon } from "@heroicons/vue/24/outline";
 import { AcademicCapIcon } from "@heroicons/vue/24/outline";
 import { GlobeAltIcon } from "@heroicons/vue/24/outline";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const courts = ref([]);
 const isLoading = ref(true);
