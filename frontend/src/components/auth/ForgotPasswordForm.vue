@@ -1,19 +1,21 @@
 <template>
   <div class="w-full max-w-md mx-auto" v-fade-up>
-    <h2 class="text-2xl font-semibold text-gray-900">Lupa Password</h2>
+    <h2 class="text-2xl font-semibold text-gray-900">
+      {{ t("Auth.titleForgot") }}
+    </h2>
     <button
       type="button"
       class="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
       @click="router.push('/login')"
     >
-      Kembali sebelumnya
+      {{ t("Auth.backToFormForgot") }}
     </button>
 
     <form class="mt-6 space-y-5" @submit.prevent="handleSubmitForgotPassword">
       <!-- Email -->
       <div class="space-y-1">
         <label for="email" class="block text-sm font-medium text-gray-700">
-          Email
+          {{ t("Auth.textEmail") }}
         </label>
         <input
           id="email"
@@ -21,31 +23,31 @@
           type="email"
           required
           autocomplete="email"
-          placeholder="Masukkan email sebelumnya"
+          :placeholder="t('Auth.placeEmail')"
           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
         />
       </div>
-      <!-- Buat password baru -->
+      <!-- Create a new password -->
       <div class="space-y-1">
-        <label for="password" class="block text-sm font-medium text-gray-700"
-          >Password Baru</label
-        >
+        <label for="password" class="block text-sm font-medium text-gray-700">{{
+          t("Auth.newPassword")
+        }}</label>
         <input
           id="password"
           v-model="password"
           type="password"
           required
           autocomplete="password"
-          placeholder="Masukkan password baru"
+          :placeholder="t('Auth.placeNewPassword')"
           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
         />
       </div>
-      <!-- Konfirmasi password baru -->
+      <!-- Confirm new password -->
       <div class="space-y-1">
         <label
           for="confirm-password"
           class="block text-sm font-medium text-gray-700"
-          >Konfirmasi Password Baru</label
+          >{{ t("Auth.confirmPasswordNew") }}</label
         >
         <input
           id="confirm-password"
@@ -53,18 +55,18 @@
           type="password"
           required
           autocomplete="password"
-          placeholder="Konfirmasi password baru"
+          :placeholder="t('Auth.placeConfirmPassword')"
           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
         />
       </div>
 
       <div class="space-y-3">
-        <!-- Tombol ubah password -->
+        <!-- Change password button -->
         <button
           type="submit"
           class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
-          <!-- Tambah spinner loading -->
+          <!-- Add loading spinner -->
           <svg
             v-if="isLoading"
             class="animate-spin h-4 w-4 mr-2"
@@ -87,7 +89,11 @@
           </svg>
 
           <span>
-            {{ isLoading ? "Memproses..." : "Ubah Password" }}
+            {{
+              isLoading
+                ? t("Auth.isLoadingProgress")
+                : t("Auth.isLoadingChangePassword")
+            }}
           </span>
         </button>
       </div>
@@ -100,6 +106,8 @@ import { ref } from "vue";
 import api from "../../api";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const toast = useToast();
 const router = useRouter();
@@ -111,7 +119,7 @@ const confirmPassword = ref("");
 
 const handleSubmitForgotPassword = async () => {
   if (password.value !== confirmPassword.value) {
-    toast.error("Password dan konfirmasi password tidak sesuai.");
+    toast.error("Password and password confirmation do not match.");
     return;
   }
 

@@ -3,7 +3,7 @@
     <div
       class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-start"
     >
-      <!-- Column Nama Lapangan -->
+      <!-- Field Name Column -->
       <div class="w-full sm:w-48">
         <input
           v-model.trim="name"
@@ -14,7 +14,7 @@
         />
       </div>
 
-      <!-- Column Kota/Daerah -->
+      <!-- City/Region Column -->
       <div class="w-full sm:w-48">
         <input
           v-model.trim="city"
@@ -59,10 +59,10 @@ const onSearch = () => {
   });
 };
 
-// User hapus salah satu kata kembali semula
+// User deleted one of the words back to its original form
 watch([name, city], ([n, c]) => {
   if (!hasSearched.value) return;
-  emit("reset"); // Reset list ke default
-  hasSearched.value = false; // Reset sekali sampai user search lagi
+  emit("reset"); // Reset list to default
+  hasSearched.value = false; // Reset once until the user searches again
 });
 </script>

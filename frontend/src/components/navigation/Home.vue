@@ -72,7 +72,7 @@
             <h2 class="text-base font-semibold">
               {{ court.name }}
             </h2>
-            <!-- Waktu Buka / Tutup -->
+            <!-- Opening or Closing Hours -->
             <div
               class="flex py-2 justify-center items-center text-emerald-500 gap-1 text-sm"
             >
@@ -97,7 +97,7 @@
                   </div>
                 </div>
 
-                <!-- Maps + Rating -->
+                <!-- Maps + Rate -->
                 <div class="flex flex-col items-end gap-1">
                   <div class="flex items-center gap-1">
                     <span class="text-gray-500">📍</span>
@@ -135,7 +135,7 @@
           {{ t("Home.aboutBadmin") }}
         </h2>
 
-        <!-- Garis animasi -->
+        <!-- Animation line -->
         <div class="mt-2 flex justify-center">
           <span
             class="inline-block h-1 w-24 rounded-full bg-linear-to-r from-emerald-400 via-emerald-500 to-emerald-600 animate-pulse"
@@ -374,9 +374,9 @@
       </div>
     </section>
 
-    <!-- Community & Achievements -->
+    <!-- Community and Achievements -->
     <section class="py-12 px-4 bg-slate-950">
-      <!-- Title dan Subtitle -->
+      <!-- Title and Subtitle -->
       <div class="text-center">
         <h1 class="text-3xl font-semibold text-white">
           {{ t("Home.communityAch") }}
@@ -492,7 +492,7 @@
         </p>
       </div>
 
-      <!-- Stats / Counters -->
+      <!-- Stats or Counters -->
       <div ref="statsSection" class="py-10 px-4 border-t border-slate-800">
         <div
           class="max-w-5xl mx-auto grid grid-cols-2 gap-8 text-center md:grid-cols-4"
@@ -546,7 +546,7 @@ onMounted(() => {
 
 onMounted(async () => {
   try {
-    // Ambil data dari API
+    // Retrieve data from the API
     const res = await api.get("/courts", {
       params: { city: "Bekasi" },
     });
@@ -554,12 +554,12 @@ onMounted(async () => {
     // Value respons
     courts.value = res.data.data || [];
 
-    // Validation apabila data kosong
+    // Validation if data is empty
     if (!courts.value.length) {
       error.value = "Tidak ada data lapangan yang tersedia";
     }
   } catch (e) {
-    // Cegah error
+    // Prevent errors
     console.error(e);
     error.value = "Gagal memuat data lapangan";
   } finally {
@@ -575,7 +575,7 @@ const stats = ref([
   { id: 4, label: "Court Availability", value: 0, target: 24, suffix: "/7" },
 ]);
 
-// Animasi Counter
+// Animation Counter
 const statsSection = ref(null);
 
 function animateCounters() {
@@ -601,15 +601,15 @@ function animateCounters() {
 }
 
 onMounted(() => {
-  // Animasi jalan ketika section masuk ke viewport
+  // Animation when section enters viewport
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting) {
         animateCounters();
-        observer.disconnect(); // Jangan diulang - ulang
+        observer.disconnect(); // Don't repeat it
       }
     },
-    { threshold: 0.3 }
+    { threshold: 0.3 },
   );
 
   if (statsSection.value) {

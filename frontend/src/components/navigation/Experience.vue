@@ -49,7 +49,7 @@
             <h2 class="text-base font-semibold">
               {{ court.name }}
             </h2>
-            <!-- Waktu Buka / Tutup -->
+            <!-- Opening or Closing Time -->
             <div
               class="flex py-2 justify-center items-center text-emerald-500 gap-1 text-sm"
             >
@@ -58,7 +58,7 @@
             </div>
             <div class="space-y-2">
               <div class="flex justify-between text-sm text-gray-700">
-                <!-- Field + No Telp -->
+                <!-- Field and No Phone Number -->
                 <div class="flex flex-col gap-1">
                   <div class="flex items-center gap-1">
                     <span class="text-gray-500">🏟️</span>
@@ -74,7 +74,7 @@
                   </div>
                 </div>
 
-                <!-- Maps + Rating -->
+                <!-- Maps and Rating -->
                 <div class="flex flex-col items-end gap-1">
                   <div class="flex items-center gap-1">
                     <span class="text-gray-500">📍</span>
@@ -123,7 +123,7 @@
         </button>
       </div>
 
-      <!-- FAQ / Pertanyaan -->
+      <!-- FAQ -->
       <div class="mt-10 max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold text-center text-gray-900">
           {{ t("faq.title") }}
@@ -195,17 +195,17 @@ const fetchCourts = async ({ name = "", city = "" } = {}) => {
     currentPage.value = 1;
 
     if (!courts.value.length) {
-      error.value = "Tidak ada data lapangan yang tersedia";
+      error.value = "No field data available";
     }
   } catch (e) {
     console.error(e);
-    error.value = "Gagal memuat data lapangan";
+    error.value = "Failed to load field data";
   } finally {
     isLoading.value = false;
   }
 };
 
-// Loading dikontrol satu kali dan fetcourts jangan di set isLoading lagi
+// Loading is controlled once and fetcourts should not be set to isLoading again
 onMounted(async () => {
   isLoading.value = true;
 
@@ -227,7 +227,7 @@ const paginatedCourts = computed(() => {
 
 const openFaq = ref(null);
 
-// Ambil array faq yang di json
+// Get the FAQ array in JSON
 const faqs = computed(() => tm("faq.items"));
 
 const toggleFaq = (index) => {

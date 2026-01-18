@@ -6,15 +6,15 @@
   >
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
-        <!-- KIRI: BRAND + MENU DESKTOP -->
+        <!-- Left: Brand + Desktop Menu -->
         <div class="flex flex-1 items-center sm:items-stretch">
-          <!-- BRAND KIRI -->
+          <!-- Left Brand -->
           <div class="flex shrink-0 items-center gap-2">
             <h1 class="text-2xl font-bold leading-none text-white font-poppins">
               BadminKuy
             </h1>
           </div>
-          <!-- MENU DESKTOP (TENGAH) -->
+          <!-- Desktop Menu (Center) -->
           <div class="hidden sm:flex flex-1 justify-center">
             <div class="flex space-x-4">
               <RouterLink
@@ -35,9 +35,9 @@
           </div>
         </div>
 
-        <!-- KANAN: SIGN IN + BAHASA (DESKTOP) + HAMBURGER (MOBILE) -->
+        <!-- Right: Sign In + Language (Desktop) + Hamburger (Mobile) -->
         <div class="flex items-center gap-3">
-          <!-- Sign In: hanya muncul di DESKTOP -->
+          <!-- Sign In: Only appears on Desktop -->
           <button
             type="button"
             class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/20 cursor-pointer transition duration-300 ease-in-out focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -47,7 +47,7 @@
             <span>{{ t("signIn") }}</span>
           </button>
 
-          <!-- Menu Bahasa: hanya muncul di DESKTOP -->
+          <!-- Language Menu: Only appears on Desktop -->
           <Menu as="div" class="relative hidden sm:block">
             <MenuButton
               class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -101,7 +101,7 @@
             </transition>
           </Menu>
 
-          <!-- Tombol HAMBURGER: pindah ke KANAN, hanya MOBILE -->
+          <!-- Hamburger Button: Move to the right, only on mobile -->
           <div class="flex sm:hidden">
             <DisclosureButton
               class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500"
@@ -116,7 +116,7 @@
       </div>
     </div>
 
-    <!-- MOBILE MENU: muncul dari bawah -->
+    <!-- Mobile Menu: Appears from below -->
     <transition
       enter-active-class="transition ease-out duration-150"
       enter-from-class="transform opacity-0 translate-y-4"
@@ -126,7 +126,7 @@
       leave-to-class="transform opacity-0 translate-y-4"
     >
       <DisclosurePanel class="sm:hidden">
-        <!-- Link utama -->
+        <!-- Main Link -->
         <div class="space-y-1 px-2 pt-2 pb-3">
           <DisclosureButton
             v-for="item in navigation"
@@ -148,7 +148,7 @@
           </DisclosureButton>
         </div>
 
-        <!-- Sign In + Bahasa di dalam hamburger (mobile only) -->
+        <!-- Sign In + Language in the hamburger menu (mobile only) -->
         <div class="border-t border-white/10 px-4 pt-3 pb-4 space-y-3">
           <!-- Sign In mobile -->
           <button
@@ -159,7 +159,7 @@
             <span>{{ t("signIn") }}</span>
           </button>
 
-          <!-- Bahasa mobile -->
+          <!-- Mobile Language -->
           <div class="space-y-2">
             <p
               class="text-xs font-medium uppercase tracking-wide text-gray-400"
@@ -225,7 +225,7 @@ import {
 } from "@heroicons/vue/24/outline";
 
 const router = useRouter(); // Router.push
-const route = useRoute(); // Route yang aktif
+const route = useRoute(); // Active Route
 
 const navigation = [
   { name: "nav.home", href: "/badmin-kuy" },
@@ -233,9 +233,9 @@ const navigation = [
   { name: "nav.contact", href: "/contact-us" },
 ];
 
-// State bahasa yang aktif
+// Active language state
 const currentLanguage = locale;
 
-// Fungsi untuk navigation yang aktif
+// Active navigation function
 const isActive = (item) => item.href === route.path;
 </script>

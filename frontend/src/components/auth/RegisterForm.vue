@@ -1,28 +1,30 @@
 <template>
   <div class="w-full max-w-md mx-auto" v-fade-up>
-    <h2 class="text-2xl font-semibold text-gray-900">Daftar Akun</h2>
-    <p class="mt-1 text-sm text-gray-500">Sudah punya akun?</p>
+    <h2 class="text-2xl font-semibold text-gray-900">
+      {{ t("Auth.regisAccount") }}
+    </h2>
+    <p class="mt-1 text-sm text-gray-500">{{ t("Auth.desAccount") }}</p>
     <button
       type="button"
       class="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
       @click="router.push('/login')"
     >
-      Login Sekarang
+      {{ t("Auth.textLogin") }}
     </button>
 
     <form class="mt-6 space-y-5" @submit.prevent="handleSubmitRegister">
-      <!-- Nama -->
+      <!-- FullName -->
       <div class="space-y-1">
-        <label for="nama" class="block text-sm font-medium text-gray-700"
-          >Nama Lengkap</label
-        >
+        <label for="nama" class="block text-sm font-medium text-gray-700">{{
+          t("Auth.fullName")
+        }}</label>
         <input
           id="nama"
           v-model="nama"
           type="text"
           required
           autocomplete="nama"
-          placeholder="Masukkan nama anda"
+          :placeholder="t('Auth.placeFullname')"
           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
         />
       </div>
@@ -30,7 +32,7 @@
       <!-- Email -->
       <div class="space-y-1">
         <label for="email" class="block text-sm font-medium text-gray-700">
-          Email
+          {{ t("Auth.textEmail") }}
         </label>
         <input
           id="email"
@@ -47,7 +49,7 @@
       <div class="space-y-1">
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm font-medium text-gray-700">
-            Password
+            {{ t("Auth.textPassword") }}
           </label>
         </div>
         <input
@@ -62,12 +64,12 @@
       </div>
 
       <div class="space-y-3">
-        <!-- Tombol Submit -->
+        <!-- Submit button -->
         <button
           type="submit"
           class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus-outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          <!-- Tambah spinner loading -->
+          <!-- Add loading spinner -->
           <svg
             v-if="isLoading"
             class="animate-spin h-4 w-4 mr-2"
@@ -90,7 +92,7 @@
           </svg>
 
           <span>
-            {{ isLoading ? "Memproses..." : "Daftar" }}
+            {{ isLoading ? t("Auth.isLoadingProgress") : t("Auth.textRegis") }}
           </span>
         </button>
       </div>
@@ -103,6 +105,8 @@ import { ref } from "vue";
 import api from "../../api";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const toast = useToast();
 const router = useRouter();

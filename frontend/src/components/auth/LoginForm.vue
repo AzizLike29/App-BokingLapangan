@@ -1,14 +1,16 @@
 <template>
   <div class="w-full max-w-md mx-auto" v-fade-up>
-    <h2 class="text-2xl font-semibold text-gray-900">Masuk ke akun</h2>
+    <h2 class="text-2xl font-semibold text-gray-900">
+      {{ t("Auth.titleLogin") }}
+    </h2>
     <p class="mt-1 text-sm text-gray-500">
-      Belum punya akun?
+      {{ t("Auth.descLogin") }}
       <button
         type="button"
         class="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
         @click="router.push('/register')"
       >
-        Daftar Sekarang
+        {{ t("Auth.directRegister") }}
       </button>
     </p>
 
@@ -16,7 +18,7 @@
       <!-- Email -->
       <div class="space-y-1">
         <label for="email" class="block text-sm font-medium text-gray-700">
-          Email
+          {{ t("Auth.textEmail") }}
         </label>
         <input
           id="email"
@@ -33,14 +35,14 @@
       <div class="space-y-1">
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm font-medium text-gray-700">
-            Password
+            {{ t("Auth.textPassword") }}
           </label>
           <button
             type="button"
             class="cursor-pointer text-xs font-medium text-emerald-600 hover:text-emerald-500"
             @click="router.push('/lupa-password')"
           >
-            Lupa Password?
+            {{ t("Auth.descPass") }}
           </button>
         </div>
         <input
@@ -62,28 +64,28 @@
             type="checkbox"
             class="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
           />
-          <span class="text-xs text-gray-600">Ingat saya</span>
+          <span class="text-xs text-gray-600">{{ t("Auth.rememberMe") }}</span>
         </label>
       </div>
 
       <div class="space-y-3">
-        <!-- Tombol submit -->
+        <!-- Submit button -->
         <button
           type="submit"
           class="cursor-pointer w-full inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
-          Masuk
+          {{ t("Auth.btnSubmit") }}
         </button>
 
         <div class="flex items-center gap-3">
           <div class="h-px flex-1 bg-gray-200"></div>
           <span class="text-[11px] uppercase tracking-wide text-gray-400">
-            Atau
+            {{ t("Auth.btnOr") }}
           </span>
           <div class="h-px flex-1 bg-gray-200"></div>
         </div>
 
-        <!-- Tombol masuk dengan Google -->
+        <!-- Sign in with Google button -->
         <button
           type="button"
           class="cursor-pointer w-full inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 shadow-sm hover:bg-gray-50"
@@ -114,7 +116,7 @@
             />
           </svg>
 
-          <span class="text-xs">Masuk dengan Google</span>
+          <span class="text-xs">{{ t("Auth.signInGoogle") }}</span>
         </button>
       </div>
     </form>
@@ -126,6 +128,8 @@ import { ref } from "vue";
 import api from "../../api";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 const toast = useToast();
 const router = useRouter();
@@ -135,8 +139,8 @@ const remember = ref(false);
 
 const handleSubmitLogin = async () => {
   if (!remember.value) {
-    toast.error("Silakan centang 'Ingat saya' terlebih dahulu.");
-    return; // hentikan proses, jangan kirim request ke backend
+    toast.error("Please check ‘Remember me’ first.");
+    return; // stop the process, do not send requests to the backend
   }
 
   try {
@@ -146,13 +150,13 @@ const handleSubmitLogin = async () => {
       remember: remember.value,
     });
 
-    console.log("Login berhasil", res.data);
+    console.log("Login successful ", res.data);
     if (res.data?.message) {
       toast.success(res.data.message);
     }
     router.push("/badmin-kuy");
   } catch (e) {
-    console.error("Login gagal", e);
+    console.error("Login failed", e);
     const errors = e?.response?.data?.errors;
 
     if (errors) {

@@ -52,7 +52,7 @@
                       class="w-full h-full object-cover"
                     />
 
-                    <!-- Jika belum ada gambar tampilkan icon upload -->
+                    <!-- If there is no image, display the upload icon -->
                     <div
                       v-else
                       class="flex flex-col items-center justify-center text-gray-400"
@@ -95,7 +95,7 @@
             </div>
 
             <div class="lg:col-span-2 space-y-4">
-              <!-- Nama Lapangan -->
+              <!-- Field Name -->
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                   {{ t("courtForm.nameCourt") }}
@@ -374,7 +374,7 @@ const handleImageUpload = (event) => {
   imagePreview.value = URL.createObjectURL(file);
 };
 
-// Aksi tombol hapus gambar
+// Delete image button action
 const clearImage = () => {
   if (imagePreview.value) {
     URL.revokeObjectURL(imagePreview.value);
@@ -388,7 +388,7 @@ const clearImage = () => {
   }
 };
 
-// Form reset setelah submit
+// Form reset after submission
 const resetForm = () => {
   form.name = "";
   form.city = "";
@@ -418,16 +418,16 @@ const handleSubmitCourtForm = async () => {
     fd.append("rating", String(form.rating ?? ""));
     fd.append("image", selectedFile.value);
 
-    // Kirim data ke backend
+    // Send data to the backend
     const res = await api.post("/court-form", fd, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    // Response sukses
+    // Success response
     if (res.data?.message) {
       toast.success(res.data.message);
-      resetForm(); // Hapus value sebelumnya
-      isOpen.value = false; // Modal otomatis tertutup
+      resetForm(); // Delete previous value
+      isOpen.value = false; // Closed-end fund
     }
   } catch (e) {
     console.log("Status:", e?.response?.status);
@@ -441,7 +441,7 @@ const handleSubmitCourtForm = async () => {
       toast.error(`${firstField}: ${firstMessage}`);
     } else {
       toast.error(
-        e?.response?.data?.message || "Data lapangan gagal ditambahkan"
+        e?.response?.data?.message || "Data lapangan gagal ditambahkan",
       );
     }
   }
